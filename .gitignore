@@ -1,0 +1,11 @@
+﻿.venv/
+__pycache__/
+.env
+.env.*
+.streamlit/secrets.toml
+data/*.csv
+data/*.txt
+!data/annotation_example.csv
+*.zip
+docs/assignment-extracted.txt
+bootstrap.py

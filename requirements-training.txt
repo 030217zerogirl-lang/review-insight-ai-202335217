@@ -1,0 +1,9 @@
+﻿-r requirements.txt
+transformers>=4.46,<6
+torch>=2.5
+nbformat>=5.10
+nbclient>=0.10
+ipykernel>=6
+reportlab>=4
+pypdf>=5
+pymupdf>=1.24

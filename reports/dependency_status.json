@@ -1,0 +1,27 @@
+{
+  "streamlit": {
+    "import_success": true,
+    "version": "1.40.2"
+  },
+  "torch": {
+    "import_success": true,
+    "version": "2.5.1+cpu"
+  },
+  "cuda_available": false,
+  "transformers": {
+    "import_success": false,
+    "error": "No module named 'transformers.utils'"
+  },
+  "fitz": {
+    "import_success": true,
+    "version": "1.24.14"
+  },
+  "reportlab": {
+    "import_success": true,
+    "version": "5.1.0"
+  },
+  "ipykernel": {
+    "import_success": true,
+    "version": "7.3.0"
+  }
+}

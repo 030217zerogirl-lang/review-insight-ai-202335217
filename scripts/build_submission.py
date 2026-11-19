@@ -1,0 +1,172 @@
+"""Build honest report, executed results notebook, Colab notebook, PDF and ZIP."""
+import sys,json,zipfile,subprocess,re,html
+from pathlib import Path
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
+from src.core import ROOT
+import pandas as pd
+
+def notebooks():
+ import nbformat as nbf
+ from nbclient import NotebookClient
+ n=nbf.v4.new_notebook();n.metadata['kernelspec']={'display_name':'Python 3','language':'python','name':'python3'}
+ n.cells=[nbf.v4.new_markdown_cell('# Review Insight AI · 실제 실행 결과\n학습은 scripts/train.py에서 실행했다. 이 노트북은 저장한 학습 로그·평가·가중치를 실제로 읽어 검증한다. 이미 완료한 학습은 재사용하며 존재하지 않는 결과를 만들지 않는다. 재학습은 다음 셀의 주석을 해제한다.'),nbf.v4.new_code_cell("from pathlib import Path\nimport os, sys, json\nROOT=Path.cwd()\nif ROOT.name=='notebooks': ROOT=ROOT.parent\nsys.path.insert(0,str(ROOT))\n# import subprocess; subprocess.run([sys.executable, str(ROOT/'scripts/train.py')], check=True)\nprint('Saved training experiment:',json.loads((ROOT/'reports/training_environment.json').read_text())['models'])"),nbf.v4.new_code_cell("import pandas as pd\nfrom IPython.display import display, Image\ndisplay(pd.read_csv(ROOT/'reports/comparison.csv'))\nprint((ROOT/'reports/data_audit.json').read_text(encoding='utf-8'))"),nbf.v4.new_code_cell("display(Image(filename=str(ROOT/'reports/learning_curves.png')))\ndisplay(Image(filename=str(ROOT/'reports/char_lr_confusion.png')))"),nbf.v4.new_code_cell("from src.core import analyze\nprint(json.dumps(analyze(['배우들 연기도 어색하고 스토리도 너무 뻔했음.','영화는 재미있지만 음악이 별로였다.']),ensure_ascii=False,indent=2))\nprint((ROOT/'reports/aspect_training.json').read_text(encoding='utf-8'))"),nbf.v4.new_code_cell("display(pd.read_csv(ROOT/'reports/char_lr_errors.csv').head(10))\nprint((ROOT/'reports/runtime_checks.json').read_text(encoding='utf-8'))")]
+ NotebookClient(n,timeout=180,kernel_name='python3',resources={'metadata':{'path':str(ROOT)}}).execute()
+ nbf.write(n,ROOT/'notebooks/01_executed_results.ipynb')
+ colab=nbf.v4.new_notebook();colab.metadata=n.metadata
+ colab.cells=[nbf.v4.new_markdown_cell('# KLUE-BERT GPU 학습\n미실행 노트북이다. Colab 런타임을 GPU로 바꾸고 프로젝트 ZIP을 업로드해 압축을 푼다. GPU가 없으면 학습을 중단한다. 동일 split/seed로 평가한다. 새로운 테스트 결과를 보고 하이퍼파라미터를 변경하지 않는다.'),nbf.v4.new_code_cell('%pip install "transformers==4.46.3" "torch>=2.5" "scikit-learn==1.5.2" pandas matplotlib joblib'),nbf.v4.new_code_cell("from google.colab import files\nimport zipfile,os\nuploaded=files.upload()\narchive=next(iter(uploaded))\nwith zipfile.ZipFile(archive) as z: z.extractall('/content/review_insight')\nos.chdir('/content/review_insight/review-insight-ai')"),nbf.v4.new_code_cell("# If local split CSVs were excluded from submission, recreate fixed splits.\nfrom scripts.train import prepare\nprepare()\n!python scripts/train_transformer.py --epochs 3 --batch-size 16"),nbf.v4.new_code_cell("from pathlib import Path\nprint(Path('reports/transformer.json').read_text())\n# Weights >100 MB: upload to an authorized external model repository with KLUE license attribution.")]
+ nbf.write(colab,ROOT/'notebooks/02_colab_transformer.ipynb')
+
+def report():
+ rows=pd.read_csv(ROOT/'reports/comparison.csv');audit=json.loads((ROOT/'reports/data_audit.json').read_text(encoding='utf-8'));checks=json.loads((ROOT/'reports/runtime_checks.json').read_text(encoding='utf-8'))
+ manifest=json.loads((ROOT/'models/manifest.json').read_text());selected=manifest['sentiment'].replace('.joblib','')
+ header=['model','accuracy','precision','recall','f1','validation_f1','training_seconds']
+ table='| '+' | '.join(header)+' |\n| '+' | '.join(['---']*len(header))+' |\n'
+ for _,r in rows.iterrows():table+='| '+' | '.join(str(r[x]) if x=='model' else f'{r[x]:.4f}' for x in header)+' |\n'
+ screenshot_paths=sorted((ROOT/'reports/screenshots').glob('*.png'))
+ screens='\n'.join(f'![실제 서비스 화면 {i+1}](reports/screenshots/{p.name})' for i,p in enumerate(screenshot_paths)) or '실제 브라우저 화면 캡처 미확보. 충족으로 표시하지 않음.'
+ errors=pd.read_csv(ROOT/'reports/char_lr_errors.csv').head(5)
+ examples='\n'.join(f"- 원문: {r.text} / 정답 {int(r.label)}, 예측 {int(r.prediction)}" for _,r in errors.iterrows())
+ text=f'''# Review Insight AI
+영화·게임 리뷰 감성 및 불만 유형 분석 서비스
+
+## 0. 프로젝트 정보
+학번: 202335217 / 이름: 김서윤. 개인 기말 프로젝트.
+GitHub URL: 미게시(인증 필요). Demo URL: 미배포. 공개 URL 요구사항은 아직 충족하지 않았다.
+현재 완성 범위: 직접 학습한 감성 모델 2개, 실제 가중치 기반 Streamlit 앱, 약한 지도 영화 불만 모델, 실행 결과 노트북과 제출 PDF/ZIP.
+미완성: Transformer GPU 학습, 사람 검수 정답 기반 불만 모델 평가, 게임 전용 학습, GitHub Public 게시와 공개 배포.
+
+## 1. 문제 정의
+Who: 영화·게임 이용자와 콘텐츠 운영자. What: 리뷰의 전체 만족도와 부분적 불만을 함께 파악한다. When: 이용 후 리뷰를 쓰거나 여러 리뷰에서 개선 우선순위를 정할 때. Why: 단순 긍정부정 비율만으로는 구체적 개선점을 알기 어렵기 때문이다.
+차별성: 전체 감성이 긍정이어도 다중 레이블 불만 분석을 실행한다. 영화 6개·게임 7개 범주를 정의하고 문장별 재예측을 보조 정보로 제공한다. 게임 불만은 모델이 없어 현재 제공하지 않는다.
+정량 목표: 감성 테스트 긍정 클래스 F1 ≥ 0.80. 불만은 독립 gold test 범주별 양성 30건 이상 확보 후 Micro/Macro F1 목표를 확정한다. 현재 불만 F1은 측정할 수 없다.
+
+## 2. 데이터
+출처: Lucy Park, NSMC 원본 https://github.com/e9t/nsmc . 원본 README의 CC0 1.0 표기를 확인했다. HF 카드와 라이선스 표기가 달라 원본 출처를 기준으로 기록한다. 자세한 검증 기록은 docs/data_sources.md에 있다.
+기존 과제 폴더의 공식 ratings_train.txt(150,000행)를 재사용했다. 원본 공식 test 50,000행은 사용하지 않았다. 원본 파일 SHA-256: {audit['source_sha256']}.
+결측 제거 후 {audit['raw_nonmissing']:,}행, 정규화·중복·상충 정답 제거 후 {audit['clean_unique']:,}행. 정확한 각 분할과 클래스 분포: reports/data_audit.json.
+구성: {json.dumps(audit['split_counts'],ensure_ascii=False)}
+선정 이유: 한국어 실사용 리뷰이고 이진 감성 정답이 있어 CPU 모델 비교에 적합하다. 다만 단문·영화 편향으로 게임 일반화는 검증되지 않았다.
+불만: NSMC에 속성 정답이 없으므로 감성 train에 한해서 자동 약한 레이블을 생성하여 OVR 분류기를 실제 학습했다. 수동 정답 자료가 아니고 다른 모델이나 규칙과의 일치율을 정확도라고 보고하지 않는다. data/annotation_queue.csv와 docs/annotation_guidelines.md로 사람 검수를 준비했다.
+
+## 3. 데이터 전처리
+src/core.py의 clean: (1) NFKC 유니코드·HTML 엔티티 정규화, (2) HTML 태그·URL 제거, (3) 반복 느낌표·물음표 축약, (4) 공백 정리. 부정어와 한국어 문자·이모티콘 정보는 불필요하게 삭제하지 않았다.
+전·후 30개 실제 변경 사례는 reports/preprocessing_examples.csv에 저장했다. 예: 전각 A, HTML 태그·링크, 반복 느낌표는 테스트에서 'A 좋다 !!'로 변환됨을 확인했다.
+동일 정규화 텍스트의 상충 정답 {audit['conflicting_texts_removed']}개 텍스트를 제거하고 중복을 제거한 후 80:10:10 층화 분할, random seed=42. 세 파티션 텍스트 교집합 0을 tests/verify.py에서 확인했다.
+TF-IDF는 train에만 fit하고 validation으로 C와 최종 모델을 선택한 뒤 고정 테스트를 평가했다. 동일 데이터로 기존 수업 과제를 수행한 이력이 있어 완전히 새로 수집한 외부 검증으로 해석하지 않는다.
+
+## 4. 모델
+베이스라인 word_lr: 단어 TF-IDF(1~2그램)+Logistic Regression. 해석 가능하고 CPU에서 빠르게 학습 가능하다.
+개선 모델 char_lr: 문자 TF-IDF(2~5그램)+Logistic Regression. 한국어 띄어쓰기·어미·신조어에 대응하도록 문자 문맥을 사용한다. 사전 학습 Transformer는 아니며 두 모델 모두 NSMC로 직접 학습했다.
+공통: max_features=100000, min_df=3, sublinear_tf=True, solver=liblinear, max_iter=300, C 후보 0.5/2.0, seed=42. 정확한 선택값·시간·행 수·환경은 reports/training_environment.json과 comparison.csv에 있다. 표의 training_seconds는 전체 전처리·학습곡선 추가 실행 시간을 제외한 후보 탐색 시간이다.
+불만 모델: 문자 TF-IDF+OneVsRest Logistic Regression, C=2, class_weight=balanced, threshold=0.5, 다중 레이블. 가중치는 models/aspect_movie.joblib. 규칙은 오직 약한 학습 레이블 생성에 사용하고 서비스 추론은 학습된 분류기로 수행한다. '기타' 약한 규칙은 일반적 불만과 다른 범주의 공존을 허용하여 정식 라벨 정의와 차이가 있다.
+Transformer: scripts/train_transformer.py와 notebooks/02_colab_transformer.ipynb 제공. KLUE-BERT(CC-BY-SA-4.0), lr=2e-5, epochs=3, max_length=96, batch=16, seed=42, validation F1 checkpoint 선택. GPU 학습은 미실행으로 가중치·성능이 없다.
+
+## 5. 평가 결과
+같은 테스트셋에서 직접 평가한 결과다. F1·Precision·Recall은 긍정 클래스(1) 기준이다. 최종 모델 {selected}는 테스트를 보기 전 validation F1로 선정했다. 비교 대상 두 감성 모델은 같은 학습·검증·테스트 행을 사용했다.
+
+{table}
+![학습 데이터 크기에 따른 학습·검증 F1](reports/learning_curves.png)
+이 곡선은 epoch 곡선이 아닌 학습 표본 수별 learning curve다. 각 지점에서 TF-IDF부터 재학습했다. train/validation F1 격차로 과적합과 데이터 증가 효과를 관찰한다. Logistic Regression의 epoch별 loss를 생성했다고 주장하지 않는다.
+![문자 모델 혼동행렬](reports/char_lr_confusion.png)
+![단어 모델 혼동행렬](reports/word_lr_confusion.png)
+오분류 사례(0=부정, 1=긍정):
+{examples}
+짧은 평가·반어·긍정어와 부정 문맥 혼재는 분석 후보다. 위 사례는 실제 오분류이며 각 원인은 추가 검수 없이 확정할 수 없다. 전체 50개 사례는 모델별 errors.csv에 있다.
+불만 Macro F1, Micro F1, 범주별 F1: 미산출. 독립 사람 정답이 없으므로 정량적 성능을 주장할 수 없다. scripts/train_gold_aspects.py는 검수된 세 분할 CSV에 대해 두 모델을 비교하고 해당 지표·범주별 지원 수·다중 혼동행렬을 생성한다. 현재 이를 실행한 결과는 없다.
+
+## 6. 서비스 프로토타입
+Streamlit의 리뷰 분석, CSV 대시보드, 프로젝트 소개 화면을 구현했다. models/manifest.json이 지정한 감성 joblib과 불만 joblib을 로드한다. 가중치가 없으면 오류를 표시하고 임의 결과로 대체하지 않는다.
+사용 안내: 영화/게임 선택 → 리뷰 입력 → 분석. 긍정 모델 확률 40~60%면 불확실성을 안내한다. 확률은 보정되지 않은 모델 출력이다. 영화 불만은 전체 감성과 무관하게 항상 분석한다. 게임은 도메인 외 감성 실험이며 불만 모델은 미학습이라고 표시한다.
+문장별 근거 보조 기능은 문장을 같은 분류기로 재예측한다. 키워드 매칭을 AI 판단 근거로 제시하지 않으며 인과적 설명이라고 주장하지 않는다.
+CSV: review 또는 text 열, UTF-8/CP949, 1~1,000행, 5MB 이하. 감성 비율·카테고리 빈도·대표 리뷰·결과 다운로드를 제공한다. 현재 '자주 언급되는 문제'는 범주 빈도로 요약하며 개별 세부 주제 군집화는 구현하지 않았다. 업로드 리뷰는 디스크에 저장하지 않는다.
+실행 검증: 실제 가중치 추론, 분할 교집합, 빈 값·길이 검사, Streamlit 리뷰/소개/대시보드 초기화/게임 경고를 확인했다. CSV 업로드 전체 흐름의 브라우저 검증 여부는 reports/browser_checks.json을 확인한다(파일이 없으면 미검증).
+로컬 검증 프로세스 관측 RSS: {checks['process_rss_mb']:.1f} MB. 모델 크기: {json.dumps(checks['model_files_mb'])} MB. 클라우드 메모리 상한 보장을 의미하지 않는다.
+{screens}
+
+## 7. 배포
+플랫폼 계획: Streamlit Community Cloud. 현재 공개 URL 미배포. GitHub 인증도 정상화가 필요하다. deploy 성공·URL을 지어내지 않았다. docs/deployment.md의 순서로 계정 로그인 후 게시한다.
+공식 배포 문서: https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app . 무료 플랜 제한은 변경될 수 있어 배포 당일 공식 상태 문서를 확인해야 한다. 앱은 Transformer를 로드하지 않고 CPU TF-IDF 모델을 사용한다.
+100MB 초과 모델·데이터를 ZIP 또는 GitHub에 넣지 않는다. KLUE 대형 가중치를 추후 만들면 라이선스와 모델 카드가 포함된 외부 저장소에 업로드하고 실제 링크를 기록한다. 현재 존재하지 않는 외부 링크는 없다.
+
+## 8. 실행 방법
+Python 3.12, Windows에서 실제 실행했다. requirements.txt는 서비스용, requirements-training.txt는 GPU 학습·문서용이다. 실행 위치는 review-insight-ai 폴더다.
+
+```powershell
+py -3.12 -m venv .venv
+.venv\\Scripts\\Activate.ps1
+python -m pip install -r requirements.txt
+python -m streamlit run app.py
+```
+
+감성·약한 지도 모델 재학습: `python scripts/train.py`. 기존 수업 데이터가 없으면 공식 NSMC train을 다운로드하고 동일 split/seed로 학습한다. 시간·지표는 실행 환경에 따라 달라질 수 있다.
+실행 검증: `python tests/verify.py`. Transformer: GPU에서 `python scripts/train_transformer.py --epochs 3 --batch-size 16`. 라벨 검수 후 다중 레이블 학습: `python scripts/train_gold_aspects.py reviewed.csv --domain movie`.
+가중치: models/word_lr.joblib, models/char_lr.joblib, models/aspect_movie.joblib 및 manifest.json. 신뢰할 수 없는 joblib 파일을 로드하지 않는다. 출력 유지 노트북: notebooks/01_executed_results.ipynb. Colab 노트북은 미실행 상태를 명시했다.
+README 기반 PDF·ZIP 재생성: `python scripts/build_submission.py`. PDF 생성 직전 작업 표시 명령은 제공된 개발 환경용이며 프로젝트 실행에는 필요하지 않다.
+비밀값은 .gitignore로 제외하고 원문 강의 PDF를 공개 파일에 포함하지 않는다. 최종 파일 목록·크기와 검증은 reports/package_verification.json에 기록한다.
+
+## 9. Lessons Learned
+Plus 1: 기존 과제의 NSMC 파일을 발견하고 SHA-256을 기록해 출처가 추적되는 실제 학습 입력을 확보했다. Plus 2: 동일 분할로 단어/문자 모델을 비교해 validation 기준 선택과 테스트 평가를 분리했다.
+Minus 1: 기존 .venv가 삭제된 Python 3.11 경로를 가리켜 그대로 실행할 수 없었다. Minus 2: 불만 정답 데이터가 없어 핵심 차별 기능의 사람 기준 성능을 검증하지 못했다. 약한 지도는 완전한 대안이 아니었다.
+Interesting 1: 영화 감성과 불만은 다른 레이블 체계라 전체 감성이 긍정이어도 불만 분석이 필요했다. Interesting 2: NSMC 원본과 HF 카드의 라이선스 표기가 달라 배포 시 원본 확인과 출처 구분이 필요했다.
+문제 → 원인 → 시도 → 결과: 기존 가상환경 실행 실패 → Python311 실행 파일 부재 → py -3.12로 실제 설치 경로 확인 및 전환 → NSMC 학습 스크립트 실행 성공.
+문제 → 원인 → 시도 → 결과: PDF 텍스트 출력 UnicodeEncodeError → Windows cp949 콘솔이 특수 문자를 표현하지 못함 → -X utf8 지정 → 전체 과제 배점과 필수 요구사항 추출 성공.
+문제 → 원인 → 시도 → 결과: 최신 PyTorch 설치 OSError → Windows 긴 설치 경로 제한이라는 pip 진단 → torch 2.5.1 안정 버전 설치 재시도 → 실제 최종 상태는 reports/dependency_status.json 확인. GPU 파인튜닝 성공으로 해석하지 않는다.
+향후 데이터 개선: 두 명 검수와 불일치 합의로 영화·게임별 독립 gold test 구축, 작품 단위 분할과 카테고리별 양성 지원 수 확보. 모델 개선: KLUE-BERT GPU 파인튜닝 및 독립 gold 불만 다중 레이블 비교, calibration과 도메인 전이 평가. 서비스 개선: 게임 모델 확보 후 활성화, CSV 비동기 처리·메모리 캐시·배포 모니터링, 공개 URL 예측 회귀 점검.
+개인 프로젝트의 코드 작성·실험 실행·문서 정리에 AI 개발 보조를 사용했다. 자동 레이블을 사람이 만든 정답으로 표시하지 않았으며 미완성 항목도 그대로 공개한다.
+'''
+ (ROOT/'README.md').write_text(text,encoding='utf-8')
+ sub={'student_id':'202335217','name':'김서윤','title':'Review Insight AI 영화게임 리뷰 감성 및 불만 유형 분석 서비스','github_url':None,'demo_url':None,'data_type':'Korean movie review text (NSMC); weak-labeled movie complaints','training':{'direct_training':True,'seed':42,'split':[.8,.1,.1],'transformer_completed':False,'aspect_labels':'weak_supervision_not_human_gold'},'models':['word_tfidf_logistic_regression','char_tfidf_logistic_regression','weak_supervised_movie_multilabel_ovr'],'primary_metric':{'name':'positive_class_f1','target':.8,'model':selected,'value':float(rows.loc[rows.model==selected,'f1'].iloc[0])},'incomplete':['public_github','public_demo','transformer_finetuning','human_gold_aspect_evaluation','game_training']}
+ (ROOT/'submission.json').write_text(json.dumps(sub,ensure_ascii=False,indent=2),encoding='utf-8')
+ rubric=[('A1',2,'충족','README §1'),('A2',1,'충족','README §1'),('B1',2,'충족','data_audit.json, data_sources.md'),('B2',2,'충족','src/core.py, preprocessing_examples.csv'),('B3',1,'충족','data_audit.json, runtime_checks.json'),('B4',1,'충족','README §2'),('C1',2,'충족','models/*.joblib, training_environment.json'),('C2',1,'충족','README §4'),('C3',3,'충족','comparison.csv, manifest.json'),('C4',2,'충족','learning_curves.png, *_confusion.png, *_errors.csv'),('D1',2,'충족','runtime_checks.json, src/core.py'),('D2',2,'미충족','공개 URL 미배포'),('D3',2,'부분 충족' if len(screenshot_paths)<3 else '충족','README §6, reports/screenshots/'),('E1',1,'부분 충족','README 헤더 완료, Public 저장소 미게시'),('E2',1,'충족','requirements.txt, README §8'),('F1',3,'충족','README §9'),('F2',1,'충족','README §9'),('F3',1,'충족','README §9')]
+ md='# 교수님 30점 기준 자체 점검\n\n실제 점수는 교수님 평가에 따른다. 부분 충족을 만점으로 합산하지 않았다. 세부 불만과 Transformer 등 추가 요청의 미완성 상태는 별도 명시한다.\n\n|ID|배점|상태|증거|\n|---|---|---|---|\n'
+ for r in rubric:md+='|'+'|'.join(map(str,r))+'|\n'
+ md+='\n추가 요청 미완성: Transformer 실제 GPU 학습, 독립 사람 정답 불만 평가 및 개선 모델 비교, 게임 전용 모델. 제출 전 Public GitHub·공개 URL 확인 필수. README 헤더는 사용자가 명시한 공백 포함 이름을 따랐다.\n'
+ (ROOT/'docs/rubric_checklist.md').write_text(md,encoding='utf-8')
+ return text
+
+def pdf(text):
+ from reportlab.pdfbase import pdfmetrics
+ from reportlab.pdfbase.ttfonts import TTFont
+ from reportlab.lib.styles import getSampleStyleSheet,ParagraphStyle
+ from reportlab.platypus import SimpleDocTemplate,Paragraph,Spacer,Image,KeepTogether
+ from reportlab.lib import colors
+ font=Path('C:/Windows/Fonts/malgun.ttf');pdfmetrics.registerFont(TTFont('Korean',str(font)))
+ styles=getSampleStyleSheet();style=ParagraphStyle('KBody',fontName='Korean',fontSize=9,leading=15,wordWrap='CJK',spaceAfter=6)
+ heading=ParagraphStyle('KHeading',parent=style,fontSize=15,leading=22,textColor=colors.HexColor('#244b78'),spaceBefore=15,spaceAfter=10)
+ story=[]
+ for line in text.splitlines():
+  image=re.match(r'!\[(.*?)\]\((.*?)\)',line)
+  if image and (ROOT/image[2]).exists():
+   from PIL import Image as PILImage
+   with PILImage.open(ROOT/image[2]) as im:w,h=im.size
+   width=475;height=width*h/w
+   if height>590:width*=590/height;height=590
+   story.extend([Image(str(ROOT/image[2]),width=width,height=height),Paragraph(html.escape(image[1]),style),Spacer(1,8)])
+  elif line.strip():story.append(Paragraph(html.escape(line.lstrip('# ')).replace('`',''),heading if line.startswith('#') else style))
+ def footer(c,d):c.setFont('Korean',8);c.setFillColor(colors.gray);c.drawString(42,25,'Review Insight AI · 202335217 김서윤');c.drawRightString(550,25,str(d.page))
+ target=ROOT/'output/pdf/portfolio.pdf';target.parent.mkdir(parents=True,exist_ok=True)
+ SimpleDocTemplate(str(target),pagesize=(595.28,841.89),rightMargin=45,leftMargin=45,topMargin=40,bottomMargin=42).build(story,onFirstPage=footer,onLaterPages=footer)
+ import fitz
+ doc=fitz.open(target);preview=ROOT/'reports/pdf_preview';preview.mkdir(exist_ok=True)
+ for i,page in enumerate(doc):page.get_pixmap(matrix=fitz.Matrix(.85,.85)).save(preview/f'page_{i+1:02}.png')
+ return target
+
+def package():
+ target=ROOT.parent/'기말-202335217-김서윤.zip'
+ files=[]
+ for p in ROOT.rglob('*'):
+  if not p.is_file():continue
+  rel=p.relative_to(ROOT)
+  if any(x in rel.parts for x in ['__pycache__','.git','.venv','pdf_preview']):continue
+  if rel.parts[0]=='data' or p.name in ['bootstrap.py','assignment-extracted.txt']:continue
+  if p.suffix in ['.zip','.pyc'] or p.name.startswith('.env') or p.name=='secrets.toml':continue
+  if p.stat().st_size>100*1024**2:raise ValueError('100MB 초과: '+str(rel))
+  files.append(p)
+ with zipfile.ZipFile(target,'w',zipfile.ZIP_DEFLATED) as z:
+  for p in files:z.write(p,'review-insight-ai/'+p.relative_to(ROOT).as_posix())
+ with zipfile.ZipFile(target) as z:assert z.testzip() is None
+ checks={'zip':target.name,'bytes':target.stat().st_size,'files':len(files),'required_files_present':all((ROOT/p).exists() for p in ['README.md','submission.json','requirements.txt','output/pdf/portfolio.pdf','notebooks/01_executed_results.ipynb']),'over_100mb_files':[],'excluded':'raw/split review data, private settings, original course materials, caches','pdf_visual_review':'required: inspect rendered pages before final delivery'}
+ (ROOT/'reports/package_verification.json').write_text(json.dumps(checks,ensure_ascii=False,indent=2),encoding='utf-8')
+ print(json.dumps(checks,ensure_ascii=False,indent=2))
+if __name__=='__main__':
+ notebooks();text=report();pdf(text);package()

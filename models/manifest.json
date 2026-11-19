@@ -1,0 +1,6 @@
+{
+  "sentiment": "char_lr.joblib",
+  "selection": "highest validation F1; test not used for selection",
+  "domain": "movie",
+  "game_sentiment": "out_of_domain_unvalidated"
+}

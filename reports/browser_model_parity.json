@@ -1,0 +1,6 @@
+{
+  "cases": 42,
+  "max_absolute_probability_difference": 1.682244266110189e-8,
+  "passed": true,
+  "method": "Numerical Node.js comparison to Python learned-model inference; not browser UI verification"
+}

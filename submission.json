@@ -1,0 +1,37 @@
+{
+  "student_id": "202335217",
+  "name": "김서윤",
+  "title": "Review Insight AI 영화게임 리뷰 감성 및 불만 유형 분석 서비스",
+  "github_url": null,
+  "demo_url": null,
+  "data_type": "Korean movie review text (NSMC); weak-labeled movie complaints",
+  "training": {
+    "direct_training": true,
+    "seed": 42,
+    "split": [
+      0.8,
+      0.1,
+      0.1
+    ],
+    "transformer_completed": false,
+    "aspect_labels": "weak_supervision_not_human_gold"
+  },
+  "models": [
+    "word_tfidf_logistic_regression",
+    "char_tfidf_logistic_regression",
+    "weak_supervised_movie_multilabel_ovr"
+  ],
+  "primary_metric": {
+    "name": "positive_class_f1",
+    "target": 0.8,
+    "model": "char_lr",
+    "value": 0.8688264143123575
+  },
+  "incomplete": [
+    "public_github",
+    "public_demo",
+    "transformer_finetuning",
+    "human_gold_aspect_evaluation",
+    "game_training"
+  ]
+}

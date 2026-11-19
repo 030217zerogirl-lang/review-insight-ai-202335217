@@ -1,0 +1,37 @@
+{
+  "source": "과제4_제출\\assignment4_results\\20261112_215141_581845\\ratings_train.txt",
+  "source_sha256": "e03b7d14e9e41be8d464a28057cd25d7396c53e67aa7fd5f7e552c59b0ee2940",
+  "raw_nonmissing": 149995,
+  "clean_unique": 145962,
+  "conflicting_texts_removed": 160,
+  "split_ratio": [
+    0.8,
+    0.1,
+    0.1
+  ],
+  "seed": 42,
+  "split_counts": {
+    "train": {
+      "size": 116769,
+      "class_counts": {
+        "0": 58599,
+        "1": 58170
+      }
+    },
+    "validation": {
+      "size": 14596,
+      "class_counts": {
+        "0": 7325,
+        "1": 7271
+      }
+    },
+    "test": {
+      "size": 14597,
+      "class_counts": {
+        "0": 7325,
+        "1": 7272
+      }
+    }
+  },
+  "note": "Only original NSMC training file used. Official test not used; local fixed holdout is test. Prior coursework used NSMC: provenance disclosed."
+}

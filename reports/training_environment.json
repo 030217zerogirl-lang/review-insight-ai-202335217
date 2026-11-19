@@ -1,0 +1,36 @@
+{
+  "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "seed": 42,
+  "models": [
+    {
+      "model": "word_lr",
+      "validation_f1": 0.8026409200624733,
+      "C": 2.0,
+      "training_seconds": 18.580606100033037,
+      "train_rows": 116769,
+      "max_features": 100000,
+      "analyzer": "word",
+      "ngrams": "(1, 2)",
+      "accuracy": 0.8162636158114681,
+      "precision": 0.8379970544918999,
+      "recall": 0.7824532453245324,
+      "f1": 0.8092732186033281
+    },
+    {
+      "model": "char_lr",
+      "validation_f1": 0.8680311487836814,
+      "C": 2.0,
+      "training_seconds": 85.85194149997551,
+      "train_rows": 116769,
+      "max_features": 100000,
+      "analyzer": "char",
+      "ngrams": "(2, 5)",
+      "accuracy": 0.8699047749537576,
+      "precision": 0.8728660652324775,
+      "recall": 0.8648239823982399,
+      "f1": 0.8688264143123575
+    }
+  ],
+  "transformer": "not_run_yet"
+}
