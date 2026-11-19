@@ -98,11 +98,11 @@
   "streamlit_introduction": true,
   "streamlit_dashboard_initial": true,
   "streamlit_game_warning": true,
-  "process_rss_mb": 269.4140625,
+  "process_rss_mb": 257.41015625,
   "model_files_mb": {
     "aspect_movie.joblib": 3.226,
     "char_lr.joblib": 1.724,
     "word_lr.joblib": 0.963
   },
-  "seconds": 8.449387799948454
+  "seconds": 8.135266799945384
 }

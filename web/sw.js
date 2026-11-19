@@ -1,4 +1,4 @@
-const CACHE='review-insight-v3-20261120';
+const CACHE='review-insight-v4-reviews-20261120';
 self.addEventListener('install',event=>{self.skipWaiting();});
 self.addEventListener('activate',event=>event.waitUntil(self.clients.claim()));
 self.addEventListener('fetch',event=>{if(event.request.method!=='GET'||new URL(event.request.url).origin!==self.location.origin)return;event.respondWith((async()=>{try{const response=await fetch(event.request);if(response.ok){const cache=await caches.open(CACHE);await cache.put(event.request,response.clone());}return response;}catch(error){const cached=await caches.match(event.request,{ignoreSearch:true});if(cached)return cached;if(event.request.mode==='navigate'){const home=await caches.match(new URL('./',self.location.href).href);if(home)return home;}return new Response('오프라인 파일이 없습니다. 연결 후 발표용 오프라인 준비를 실행해 주세요.',{status:503,headers:{'Content-Type':'text/plain;charset=utf-8'}});}})());});

@@ -1,10 +1,11 @@
-﻿"""Review Insight: 영화별 집계와 직접 리뷰 분석."""
+"""Review Insight: 영화별 집계와 직접 리뷰 분석."""
 import sys,json,io
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).parent))
 import pandas as pd,streamlit as st
 from src.core import ROOT,analyze,CATEGORIES
 from src.catalogue import summarize_reviews
+from src.moderation import mask_profanity,masked_clauses
 st.set_page_config(page_title='Review Insight',layout='wide',page_icon='🎬')
 st.markdown('''<style>.stApp{background:#fff;color:#202b32}h1,h2,h3{letter-spacing:-.04em}div[data-testid="stMetric"]{border-bottom:1px solid #e2e6e8;padding:14px 0}section[data-testid="stSidebar"]{background:#f5f7f7}.block-container{max-width:1200px;padding-top:2.3rem}.caption{color:#68747b;font-size:14px}</style>''',unsafe_allow_html=True)
 st.sidebar.title('Review Insight')
@@ -30,11 +31,21 @@ def detail(m):
  with left:st.subheader('리뷰의 전체적인 분위기');sentiment_chart(m['summary'])
  with right:st.subheader('주요 불만 유형');frequency_chart(m['summary']);st.caption('전체 리뷰가 분모이며 한 리뷰에 여러 유형이 포함될 수 있습니다.')
  st.subheader('자주 등장한 표현');st.write(' · '.join(f"{i['expression']} {i['count']}개" for i in m['summary']['issue_expressions']) or '집계된 표현이 없습니다.');st.caption('부정 예측 절의 문자열 빈도이며 인과적 근거가 아닙니다.')
- st.subheader('실제 이용자 리뷰')
+ st.subheader('대표 리뷰');st.caption('욕설은 자동으로 가립니다. 전체 표본의 대표성을 뜻하지 않습니다.')
  for label in ['긍정','부정','혼합']:
   with st.expander(f'{label}으로 분류한 리뷰'):
    for r in m['summary']['examples'][label][:2]:
-    st.write(r['text']);st.caption(f"원 평점 {r['rating']}/10 · 원문 작성일 미제공");st.link_button('원 자료 보기',r['source_url'])
+    st.write(mask_profanity(r['text']));st.caption(f"원 평점 {r['rating']}/10 · 원문 작성일 미제공");st.link_button('원 자료 보기',r['source_url'])
+ with st.expander(f"전체 {m['summary']['review_count']}개 리뷰 보기"):
+  label=st.selectbox('리뷰 감성',['전체','긍정','부정','혼합'],key='review_label_'+m['id'])
+  selected_rows=[r for r in m['reviews'] if label=='전체' or r['sentiment']==label]
+  selected_rows=sorted(selected_rows,key=lambda r:(not 15<=len(r['text'])<=220,r['id']))
+  if selected_rows:
+   pages=(len(selected_rows)+9)//10;page_number=st.number_input('페이지',min_value=1,max_value=pages,value=1,step=1,key='review_page_'+m['id']+label)
+   for r in selected_rows[(page_number-1)*10:page_number*10]:
+    st.write(mask_profanity(r['text']));st.caption(f"평점 {r['rating']}/10 · {r['sentiment']}으로 분류")
+   st.caption(f'{len(selected_rows)}개 중 페이지 {page_number}/{pages}')
+  else:st.caption('해당 감성 리뷰가 없습니다.')
  st.caption('자료: Kim, Lim, Kwon (2022), Mendeley Data V6 · CC BY 4.0 · 원 자료 공개 2022-05-24')
  st.link_button('데이터 출처',catalogue['source']['url'])
 
@@ -64,7 +75,7 @@ elif page=='리뷰 직접 분석':
    r=analyze([text],domain)[0];a,b,c=st.columns(3);a.metric('전체 감성',r['sentiment']);b.metric('긍정 가능성',f"{r['positive_probability']:.1%}");c.metric('불만 유형',f"{len(r['complaints'])}개")
    if r['uncertain']:st.info('긍정과 부정의 구분이 애매한 리뷰입니다.')
    st.subheader('주요 불만 유형');st.write(' · '.join(r['complaints']) or '분류된 불만 유형이 없습니다.')
-   st.subheader('문장별 상세 분석');clauses=pd.DataFrame(r['clauses']).rename(columns={'text':'문장','sentiment':'감성','positive_probability':'긍정 가능성'});st.dataframe(clauses,hide_index=True,use_container_width=True)
+   st.subheader('문장별 상세 분석');clauses=pd.DataFrame(masked_clauses(r['clauses'])).rename(columns={'text':'문장','sentiment':'감성','positive_probability':'긍정 가능성'});st.dataframe(clauses,hide_index=True,use_container_width=True)
    st.caption('확률과 분류의 의미는 분석 모델 정보의 기준 및 한계를 확인하세요.')
   except Exception as e:st.error(f'분석할 수 없습니다: {e}')
 elif page=='CSV 대량 분석':
@@ -89,8 +100,8 @@ elif page=='CSV 대량 분석':
      matched=out[out.complaints.map(lambda labels:category in labels)]
      if not matched.empty:
       with st.expander(f'{category} · 분류 사례'):
-       for text in matched.review.head(3):st.write(text)
-    out['complaints']=out.complaints.map(lambda labels:' | '.join(labels));out['clauses']=out.clauses.map(lambda clauses:json.dumps(clauses,ensure_ascii=False));out=out.drop(columns='aspect_probabilities')
+       for text in matched.review.head(3):st.write(mask_profanity(text))
+    out['complaints']=out.complaints.map(lambda labels:' | '.join(labels));out['review']=out.review.map(mask_profanity);out['clauses']=out.clauses.map(lambda clauses:json.dumps(masked_clauses(clauses),ensure_ascii=False));out=out.drop(columns='aspect_probabilities')
     st.dataframe(out,use_container_width=True);st.download_button('분석 결과 CSV 다운로드',out.to_csv(index=False).encode('utf-8-sig'),'review_analysis.csv','text/csv')
   except Exception as e:st.error(str(e))
 elif page=='분석 모델 정보':

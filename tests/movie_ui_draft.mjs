@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 const nodes=new Map(),callbacks={},make=()=>({value:'',textContent:'',innerHTML:'',disabled:false,hidden:false,files:[],className:'',dataset:{},classList:{toggle(){}},addEventListener(type,fn){this[type]=fn;},click(){},replaceChildren(){this.innerHTML='';}});
 const get=id=>{if(!nodes.has(id))nodes.set(id,make());return nodes.get(id);};
-globalThis.document={getElementById:get,querySelectorAll:()=>[],addEventListener(){},createElement:()=>make()};globalThis.location={hash:'#movies'};globalThis.window={addEventListener(type,fn){callbacks[type]=fn;},scrollTo(){}};
+globalThis.document={getElementById:get,querySelectorAll:()=>[],addEventListener(type,fn){callbacks['document-'+type]=fn;},createElement:()=>make()};globalThis.location={hash:'#movies'};globalThis.window={addEventListener(type,fn){callbacks[type]=fn;},scrollTo(){}};
 globalThis.fetch=async url=>{const bytes=fs.readFileSync(new URL(url));return {ok:true,json:async()=>JSON.parse(bytes.toString('utf8')),arrayBuffer:async()=>bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.byteLength)};};Object.defineProperty(globalThis,'navigator',{value:{},configurable:true});globalThis.alert=message=>{throw Error(message);};
 get('sort').value='rating';get('minimum').value='0';get('year').value='';get('domain').value='movie';
 await import('../web/app.mjs');
@@ -11,4 +11,24 @@ location.hash='#compare/kr-01/kr-02';callbacks.hashchange();if(!get('compare').i
 get('search').value='부산행';get('search').input();if(!get('movie-list').innerHTML.includes('부산행')||get('movie-list').innerHTML.includes('택시운전사'))throw Error('Search failed');
 get('review').value='음악은 좋은데 스토리는그닥..';await get('analyze').onclick();if(!get('result').innerHTML.includes('혼합'))throw Error('Direct mixed failed');
 const buffer=new TextEncoder().encode('review\n"음악은 좋은데 스토리는그닥.."\n"재미있고 좋았다."').buffer;get('upload').files=[{size:buffer.byteLength,arrayBuffer:async()=>buffer}];await get('upload').onchange();if(!get('batch-status').textContent.includes('2개 리뷰 분석을 마쳤습니다.'))throw Error('CSV failed: '+get('batch-status').textContent);
-const report={passed:true,list:true,detail:true,comparison:true,search:true,direct_mixed:true,csv:true,scope:'DOM-stub handler tests. No real PC/mobile rendering, file picker or screenshot validation.'};fs.writeFileSync(new URL('../reports/movie_ui_draft_tests.json',import.meta.url),JSON.stringify(report,null,2));console.log(report);
+
+const {maskProfanity,selectReviews}=await import('../web/review_utils.mjs');
+const source=JSON.parse(fs.readFileSync(new URL('../web/data/catalogue.json',import.meta.url),'utf8'));
+if(!get('movie-list').innerHTML.includes('#reviews/'))throw Error('Review count link missing');
+location.hash='#reviews/kr-04?sentiment='+encodeURIComponent('부정')+'&category='+encodeURIComponent('스토리 및 전개');callbacks.hashchange();
+if(!get('reviews').innerHTML.includes('공조 리뷰')||!get('reviews').innerHTML.includes('다음')||!get('reviews').innerHTML.includes('욕설 자동 가림'))throw Error('Review browser failed');
+const film=source.movies.find(m=>m.reviews.some(r=>maskProfanity(r.text)!==r.text));
+if(!film)throw Error('No masked source case for integration check');
+const row=film.reviews.find(r=>maskProfanity(r.text)!==r.text);
+location.hash='#reviews/'+film.id+'?q='+encodeURIComponent(maskProfanity(row.text));callbacks.hashchange();
+const escape=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+if(get('reviews').innerHTML.includes(escape(row.text))||!get('reviews').innerHTML.includes(escape(maskProfanity(row.text))))throw Error('Raw profanity visible');
+callbacks['document-click']({target:{dataset:{review:row.id}}});
+if(get('review').value!==maskProfanity(row.text))throw Error('Reanalysis exposed original input');
+await get('analyze').onclick();if(get('result').innerHTML.includes(escape(row.text)))throw Error('Raw profanity in reanalysis result');
+const blobs=[];URL.createObjectURL=blob=>{blobs.push(blob);return 'blob:test-review';};URL.revokeObjectURL=()=>{};
+const profane=new TextEncoder().encode('review\n"씨발 스토리는 별로다."').buffer;
+get('upload').files=[{size:profane.byteLength,arrayBuffer:async()=>profane}];await get('upload').onchange();get('download-results').onclick();
+const csv=await blobs.at(-1).text();if(csv.includes('씨발')||!csv.includes('**'))throw Error('CSV masking failed');
+
+const report={passed:true,list:true,detail:true,comparison:true,search:true,direct_mixed:true,csv:true,review_browser:true,review_count_links:true,display_masking:true,reanalysis_input_masking:true,csv_masking:true,scope:'DOM-stub handler tests. No real PC/mobile rendering, file picker or screenshot validation.'};fs.writeFileSync(new URL('../reports/movie_ui_draft_tests.json',import.meta.url),JSON.stringify(report,null,2));console.log(report);

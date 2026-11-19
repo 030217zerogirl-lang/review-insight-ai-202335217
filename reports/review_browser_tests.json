@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "moderation_cases": 9,
+  "filter_cases": 180,
+  "movie_pagination_cases": 20,
+  "source_data_unchanged": true,
+  "analysis_signature": "4059e88d3103ca9c4a5f507860cc266c27d3a2268499b4130ce7a11c28bb4881",
+  "masked_source_reviews": 5,
+  "method": "Rule-based display masking. Not AI inference or a guarantee to detect every obfuscated term."
+}

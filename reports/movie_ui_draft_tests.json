@@ -6,5 +6,10 @@
   "search": true,
   "direct_mixed": true,
   "csv": true,
+  "review_browser": true,
+  "review_count_links": true,
+  "display_masking": true,
+  "reanalysis_input_masking": true,
+  "csv_masking": true,
   "scope": "DOM-stub handler tests. No real PC/mobile rendering, file picker or screenshot validation."
 }

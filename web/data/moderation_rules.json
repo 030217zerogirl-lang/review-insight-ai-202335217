@@ -1,0 +1,27 @@
+{
+  "version": "review-mask-v1",
+  "purpose": "display and exported review text only; never changes inference inputs or original source records",
+  "limitations": "Rule-based filter. Obfuscated terms may be missed; ambiguous expressions may be masked. External original source links are not controlled.",
+  "patterns": [
+    "(?:씨|시)[\\s.·*_\\-0-9\\u200b\\u200c\\u200d]*발(?!점)",
+    "씨[\\s.·*_\\-0-9\\u200b\\u200c\\u200d]*빨",
+    "쌍[\\s.·*_\\-0-9\\u200b\\u200c\\u200d]*놈",
+    "개[\\s.·*_\\-0-9\\u200b\\u200c\\u200d]*새[\\s.·*_\\-0-9\\u200b\\u200c\\u200d]*끼",
+    "씹[\\s.·*_\\-0-9\\u200b\\u200c\\u200d]*새[\\s.·*_\\-0-9\\u200b\\u200c\\u200d]*끼",
+    "새[\\s.·*_\\-0-9\\u200b\\u200c\\u200d]*끼",
+    "병[\\s.·*_\\-0-9\\u200b\\u200c\\u200d]*신",
+    "미[\\s.·*_\\-0-9\\u200b\\u200c\\u200d]*친[\\s.·*_\\-0-9\\u200b\\u200c\\u200d]*놈",
+    "미[\\s.·*_\\-0-9\\u200b\\u200c\\u200d]*친[\\s.·*_\\-0-9\\u200b\\u200c\\u200d]*년",
+    "존[\\s.·*_\\-0-9\\u200b\\u200c\\u200d]*나(?!단)",
+    "좆",
+    "씹[\\s.·*_\\-0-9\\u200b\\u200c\\u200d]*새",
+    "[ㅅᄉ][\\s.·*_\\-0-9\\u200b\\u200c\\u200d]*[ㅂᄇ]",
+    "[ㅂᄇ][\\s.·*_\\-0-9\\u200b\\u200c\\u200d]*[ㅅᄉ]",
+    "[ㅈᄌ][\\s.·*_\\-0-9\\u200b\\u200c\\u200d]*[ㄴᄂ]",
+    "\\bfuck(?:ing|er|ers|ed|s)?\\b",
+    "\\bshit(?:ty|s)?\\b",
+    "\\bassholes?\\b",
+    "\\bbitch(?:es)?\\b",
+    "\\bmotherfuck(?:er|ers|ing)?\\b"
+  ]
+}

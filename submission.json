@@ -41,7 +41,9 @@
       "positive": 0.6,
       "negative": 0.4
     },
-    "aspect_display": "negative-clause predictions"
+    "aspect_display": "negative-clause predictions",
+    "review_browser": "clickable review counts, sentiment/category filters, representative/rating sorting, pagination",
+    "display_moderation": "rule-based masking for displayed and exported text; original inference preserved"
   },
   "movie_analysis": {
     "movies": 20,
