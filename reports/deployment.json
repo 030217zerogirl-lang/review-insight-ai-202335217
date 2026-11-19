@@ -1,17 +1,17 @@
 {
   "github_url": "https://github.com/030217zerogirl-lang/review-insight-ai-202335217",
   "demo_url": "https://030217zerogirl-lang.github.io/review-insight-ai-202335217/",
-  "verified_at": "2026-11-19T07:48:53.086Z",
+  "verified_at": "2026-11-19T17:27:42.298Z",
   "http_checks": [
     {
       "path": "",
       "status": 200,
-      "bytes": 4064
+      "bytes": 5730
     },
     {
       "path": "app.mjs",
       "status": 200,
-      "bytes": 6459
+      "bytes": 20564
     },
     {
       "path": "engine.mjs",
@@ -21,7 +21,22 @@
     {
       "path": "style.css",
       "status": 200,
-      "bytes": 3736
+      "bytes": 9034
+    },
+    {
+      "path": "sw.js",
+      "status": 200,
+      "bytes": 945
+    },
+    {
+      "path": "data/catalogue.json",
+      "status": 200,
+      "bytes": 2076922
+    },
+    {
+      "path": "models/analysis_manifest.json",
+      "status": 200,
+      "bytes": 921
     },
     {
       "path": "models/char_lr.json",
@@ -34,36 +49,11 @@
       "bytes": 9351480
     }
   ],
-  "mixed_sample": {
-    "review": "음악은 좋은데 스토리는그닥..",
-    "positive_probability": 0.12860138183370035,
-    "binary_sentiment": "부정",
-    "sentiment": "혼합",
-    "is_mixed": true,
-    "uncertain": false,
-    "clauses": [
-      {
-        "text": "음악은 좋은데",
-        "positive_probability": 0.6346357247654811,
-        "sentiment": "긍정"
-      },
-      {
-        "text": "스토리는그닥..",
-        "positive_probability": 0.06404664890157402,
-        "sentiment": "부정"
-      }
-    ],
-    "complaints": [
-      "스토리 및 전개"
-    ],
-    "scores": [
-      0.000604566733543995,
-      0.9959884808341791,
-      0.0016203508918807888,
-      0.005399269670392627,
-      0.0014411509814406945,
-      0.00665777363446158
-    ]
-  },
-  "verification": "Public HTTP files and remote learned weights passed numerical mixed inference. Actual browser UI not verified."
+  "movie_count": 20,
+  "review_count": 1478,
+  "analysis_signature": "4059e88d3103ca9c4a5f507860cc266c27d3a2268499b4130ce7a11c28bb4881",
+  "public_movie_parity_cases": 20,
+  "max_probability_difference": 5.5706694812585056e-9,
+  "mixed_result": "혼합",
+  "verification": "Public assets/version and remote-weight inference checked in Node. Actual browser rendering/file upload/offline tests not completed."
 }

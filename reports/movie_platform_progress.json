@@ -1,7 +1,7 @@
 {
   "task": "movie_platform_redesign",
-  "updated_at_kst": "2026-11-19T17:30:09.125014+09:00",
-  "status": "paused_at_user_request_until_resumed",
+  "updated_at_kst": "2026-11-20T02:30:03.767765+09:00",
+  "status": "delivered_with_documented_limitations",
   "requested_stop_kst": "2026-11-19T17:30:00+09:00",
   "completed": [
     "existing_code_review",
@@ -14,22 +14,30 @@
     "20_movie_python_javascript_live_parity_passed",
     "12_case_context_audit_3_mismatches_recorded",
     "five_menu_responsive_ui_draft_saved",
-    "draft_list_detail_comparison_search_direct_csv_handler_tests_passed"
+    "draft_list_detail_comparison_search_direct_csv_handler_tests_passed",
+    "release_year_metadata_20_verified",
+    "production_UI_integrated",
+    "runtime_model_hash_check",
+    "Streamlit_movie_pages_updated",
+    "offline_preparation_implemented_not_browser_verified",
+    "README_PDF_notebook_submission_updated",
+    "presentation_18_slides_and_notes_created",
+    "public_deployment_verified",
+    "fresh_submission_ZIP_app_smoke_passed"
   ],
   "pending": [
-    "verify_release_year_metadata",
-    "real_PC_mobile_browser_QA_and_screenshots",
-    "integrate_UI_draft_into_web",
-    "runtime_model_manifest_consistency_check",
-    "update_Streamlit_movie_pages",
-    "offline_cache_and_loading_optimization",
-    "update_README_PDF_notebooks_PPT_prompt",
-    "update_clean_submission_zip",
-    "deploy_and_verify_public_site"
+    "actual_PC_mobile_browser_QA",
+    "three_real_service_screenshots",
+    "actual_browser_offline_test",
+    "PowerPoint_app_rendering_check",
+    "human_gold_aspect_evaluation",
+    "Transformer_GPU_training",
+    "game_specific_models"
   ],
-  "public_site_changed": false,
-  "submission_updated_for_new_movie_feature": false,
+  "public_site_changed": true,
+  "submission_updated_for_new_movie_feature": true,
   "draft_ui_directory": "developer_notes/website-v3",
   "analysis_signature": "4059e88d3103ca9c4a5f507860cc266c27d3a2268499b4130ce7a11c28bb4881",
-  "resume_instruction": "Read developer_notes/WORK_STATE.md first; continue unfinished integration, not data collection from scratch."
+  "resume_instruction": "Read developer_notes/WORK_STATE.md first; continue unfinished integration, not data collection from scratch.",
+  "presentation_slides": 18
 }

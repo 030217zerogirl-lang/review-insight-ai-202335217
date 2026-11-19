@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "source": "freshly extracted submission ZIP",
+  "movie_count": 20,
+  "movie_reviews": 1478,
+  "streamlit_startup": true,
+  "mixed_review_prediction": true,
+  "model_files_loaded": true,
+  "browser_rendering": false
+}
