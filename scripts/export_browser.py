@@ -1,4 +1,4 @@
-﻿import sys,json,joblib,hashlib
+import sys,json,joblib,hashlib
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from src.core import ROOT,CATEGORIES,analyze
@@ -12,6 +12,6 @@ for name in ['char_lr','aspect_movie']:
  # numpy vocabulary integers are not JSON native.
  payload['vocabulary']={k:int(i) for k,i in payload['vocabulary'].items()}
  (out/f'{name}.json').write_text(json.dumps(payload,ensure_ascii=False,separators=(',',':')),encoding='utf-8')
-texts=pd.read_csv(ROOT/'data/validation.csv').sample(40,random_state=17).text.tolist()+['배우들 연기도 어색하고 스토리도 너무 뻔했음.','게임은 재미있는데 조작이 불편하고 버그가 너무 많아요.']
+texts=pd.read_csv(ROOT/'data/validation.csv').sample(40,random_state=17).text.tolist()+['배우들 연기도 어색하고 스토리도 너무 뻔했음.','게임은 재미있는데 조작이 불편하고 버그가 너무 많아요.','음악은 좋은데 스토리는그닥..','음악은 좋다. 스토리는 별로다.','음악과 영상 모두 정말 훌륭하다.']
 (ROOT/'reports/parity_inputs.json').write_text(json.dumps(analyze(texts),ensure_ascii=False),encoding='utf-8')
 print('Exported learned weights. No retraining and no rules used for inference.')

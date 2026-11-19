@@ -1,4 +1,4 @@
-﻿import sys,json,io
+import sys,json,io
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).parent))
 import streamlit as st,pandas as pd
@@ -25,14 +25,16 @@ if page=='리뷰 분석':
   if result:
    r=result[0];a,b,c=st.columns(3)
    a.metric('전체 감성',r['sentiment']);b.metric('긍정 모델 확률',f"{r['positive_probability']:.1%}");c.metric('불만 유형',f"{len(r['complaints'])}개")
-   st.caption('확률은 통계적으로 보정되지 않은 모델 출력이며 정확도를 보장하지 않습니다.')
+   st.caption('전체 문장의 이진 감성 모델 확률입니다. 혼합 감성의 확률이 아니며 확률 보정은 검증하지 않았습니다.')
+   if r['is_mixed']:st.info('긍정·부정으로 예측한 절이 함께 있어 혼합으로 표시했습니다. 절 분리와 이진 모델을 조합한 보조 판정이며 별도의 3클래스 학습 결과는 아닙니다.')
+   st.dataframe(pd.DataFrame(r['clauses']),hide_index=True,use_container_width=True)
    if r['uncertain']:st.info('긍정 확률 40~60%: 해석이 애매한 리뷰입니다.')
    st.subheader('세부 불만 유형 · 실험')
    st.warning('자동 규칙으로 만든 약한 레이블로 학습했습니다. 사람 정답 기준 성능은 미검증이며 결과가 틀릴 수 있습니다.')
    st.write(' · '.join(r['complaints']) or ('감지된 불만 없음' if domain=='movie' else '게임 불만 모델 미학습'))
-   if r['aspect_probabilities']:st.bar_chart(pd.Series(r['aspect_probabilities'],name='모델 점수'))
+   if r['aspect_probabilities'] and r['complaints']:st.bar_chart(pd.Series(r['aspect_probabilities'],name='모델 점수'))
    with st.expander('문장별 모델 재분석 · 실험적 보조 정보'):
-    st.caption('문장을 분리해 같은 학습 모델로 재예측합니다. 인과적 설명이나 정확한 근거 추출이 아닙니다. 키워드 매칭을 판단 근거로 표시하지 않습니다.')
+    st.caption('대조 연결어·문장부호로 절을 나눠 이진 모델로 재예측합니다. 문맥을 잃을 수 있으며 인과적 설명이 아닙니다.')
     st.json(sentence_evidence(text,domain))
 elif page=='CSV 대시보드':
  st.subheader('리뷰를 모아, 문제를 발견하세요')
@@ -63,6 +65,7 @@ elif page=='CSV 대시보드':
        matches=out[out.complaints.map(lambda x:cat in x)]
        for _,row in matches.head(3).iterrows():st.write(row.review)
      out['complaints']=out.complaints.map(lambda x:' | '.join(x));out=out.drop(columns='aspect_probabilities')
+     out['clauses']=out.clauses.map(lambda x:json.dumps(x,ensure_ascii=False))
      st.dataframe(out,use_container_width=True)
      st.download_button('분석 결과 CSV 다운로드',out.to_csv(index=False).encode('utf-8-sig'),'review_analysis.csv','text/csv')
   except Exception as exc:st.error(str(exc))

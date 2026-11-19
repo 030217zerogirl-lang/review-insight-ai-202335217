@@ -8,14 +8,25 @@
       "review": "배우들 연기도 어색하고 스토리도 너무 뻔했음.",
       "domain": "movie",
       "sentiment": "부정",
+      "binary_sentiment": "부정",
       "positive_probability": 0.044872139204748675,
       "confidence": 0.9551278607952514,
       "uncertain": false,
+      "is_mixed": false,
+      "mixed_method": "contrast_clause_model_predictions",
+      "clauses": [
+        {
+          "text": "배우들 연기도 어색하고 스토리도 너무 뻔했음.",
+          "sentiment": "부정",
+          "positive_probability": 0.044872139204748675
+        }
+      ],
       "complaints": [
         "연기 및 캐스팅",
         "스토리 및 전개"
       ],
       "aspect_status": "weak_supervision_experimental",
+      "aspect_source": "whole_review",
       "aspect_probabilities": {
         "연기 및 캐스팅": 0.9996799626366987,
         "스토리 및 전개": 0.9988747339090673,
@@ -29,11 +40,22 @@
       "review": "영화가 정말 재미있고 훌륭했다.",
       "domain": "movie",
       "sentiment": "긍정",
+      "binary_sentiment": "긍정",
       "positive_probability": 0.977314445445063,
       "confidence": 0.977314445445063,
       "uncertain": false,
+      "is_mixed": false,
+      "mixed_method": "contrast_clause_model_predictions",
+      "clauses": [
+        {
+          "text": "영화가 정말 재미있고 훌륭했다.",
+          "sentiment": "긍정",
+          "positive_probability": 0.977314445445063
+        }
+      ],
       "complaints": [],
       "aspect_status": "weak_supervision_experimental",
+      "aspect_source": "no_negative_clause",
       "aspect_probabilities": {
         "연기 및 캐스팅": 0.0006253446790747765,
         "스토리 및 전개": 0.002362681679791323,
@@ -47,12 +69,28 @@
   "game_status": {
     "review": "게임은 재미있는데 조작이 불편하고 버그가 너무 많아요.",
     "domain": "game",
-    "sentiment": "부정",
+    "sentiment": "혼합",
+    "binary_sentiment": "부정",
     "positive_probability": 0.4456019100067021,
     "confidence": 0.5543980899932979,
-    "uncertain": true,
+    "uncertain": false,
+    "is_mixed": true,
+    "mixed_method": "contrast_clause_model_predictions",
+    "clauses": [
+      {
+        "text": "게임은 재미있는데",
+        "sentiment": "긍정",
+        "positive_probability": 0.8531874932421658
+      },
+      {
+        "text": "조작이 불편하고 버그가 너무 많아요.",
+        "sentiment": "부정",
+        "positive_probability": 0.21143750897674063
+      }
+    ],
     "complaints": [],
     "aspect_status": "unavailable",
+    "aspect_source": "unavailable",
     "aspect_probabilities": {}
   },
   "invalid_input_rejected": true,
@@ -60,11 +98,11 @@
   "streamlit_introduction": true,
   "streamlit_dashboard_initial": true,
   "streamlit_game_warning": true,
-  "process_rss_mb": 227.0859375,
+  "process_rss_mb": 260.9765625,
   "model_files_mb": {
     "aspect_movie.joblib": 3.226,
     "char_lr.joblib": 1.724,
     "word_lr.joblib": 0.963
   },
-  "seconds": 22.690782099962234
+  "seconds": 9.291406900039874
 }

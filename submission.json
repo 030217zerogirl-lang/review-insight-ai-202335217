@@ -34,5 +34,13 @@
     "real_browser_verification",
     "three_service_screenshots"
   ],
-  "deployment_verification": "HTTP and remote weights inference passed; real browser UI not verified"
+  "deployment_verification": "HTTP and remote weights inference passed; real browser UI not verified",
+  "features": {
+    "mixed_sentiment": "clause-based binary-model aggregation; no three-class training",
+    "clause_thresholds": {
+      "positive": 0.6,
+      "negative": 0.4
+    },
+    "aspect_display": "negative-clause predictions"
+  }
 }

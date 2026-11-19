@@ -1,0 +1,169 @@
+{
+  "regression_tests_passed": true,
+  "method": "same trained binary model scored on contrast clauses; positive >=0.6 and negative <=0.4 yields mixed; complaints require clause negative prediction",
+  "not_a_three_class_model": true,
+  "not_a_gold_evaluation": true,
+  "examples": [
+    {
+      "review": "음악은 좋은데 스토리는그닥..",
+      "domain": "movie",
+      "sentiment": "혼합",
+      "binary_sentiment": "부정",
+      "positive_probability": 0.12860137916524678,
+      "confidence": 0.8713986208347533,
+      "uncertain": false,
+      "is_mixed": true,
+      "mixed_method": "contrast_clause_model_predictions",
+      "clauses": [
+        {
+          "text": "음악은 좋은데",
+          "sentiment": "긍정",
+          "positive_probability": 0.6346357373474129
+        },
+        {
+          "text": "스토리는그닥..",
+          "sentiment": "부정",
+          "positive_probability": 0.06404664834756144
+        }
+      ],
+      "complaints": [
+        "스토리 및 전개"
+      ],
+      "aspect_status": "weak_supervision_experimental",
+      "aspect_source": "negative_clauses",
+      "aspect_probabilities": {
+        "연기 및 캐스팅": 0.000604566733543994,
+        "스토리 및 전개": 0.9959884808341791,
+        "연출 및 편집": 0.0016203508918807888,
+        "영상 및 시각효과": 0.0053992696703926354,
+        "음악 및 음향": 0.0014411509814406945,
+        "기타": 0.00665777363446158
+      }
+    },
+    {
+      "review": "음악은 좋다. 스토리는 별로다.",
+      "domain": "movie",
+      "sentiment": "혼합",
+      "binary_sentiment": "부정",
+      "positive_probability": 0.0627118978448247,
+      "confidence": 0.9372881021551753,
+      "uncertain": false,
+      "is_mixed": true,
+      "mixed_method": "contrast_clause_model_predictions",
+      "clauses": [
+        {
+          "text": "음악은 좋다.",
+          "sentiment": "긍정",
+          "positive_probability": 0.7801903029695458
+        },
+        {
+          "text": "스토리는 별로다.",
+          "sentiment": "부정",
+          "positive_probability": 0.004577864995861213
+        }
+      ],
+      "complaints": [
+        "스토리 및 전개"
+      ],
+      "aspect_status": "weak_supervision_experimental",
+      "aspect_source": "negative_clauses",
+      "aspect_probabilities": {
+        "연기 및 캐스팅": 0.055596392992886025,
+        "스토리 및 전개": 0.998890417331479,
+        "연출 및 편집": 0.01396708805383341,
+        "영상 및 시각효과": 0.009653692338490278,
+        "음악 및 음향": 0.021091172019133395,
+        "기타": 0.035061051072657334
+      }
+    },
+    {
+      "review": "음악과 영상 모두 정말 훌륭하다.",
+      "domain": "movie",
+      "sentiment": "긍정",
+      "binary_sentiment": "긍정",
+      "positive_probability": 0.980858338617531,
+      "confidence": 0.980858338617531,
+      "uncertain": false,
+      "is_mixed": false,
+      "mixed_method": "contrast_clause_model_predictions",
+      "clauses": [
+        {
+          "text": "음악과 영상 모두 정말 훌륭하다.",
+          "sentiment": "긍정",
+          "positive_probability": 0.980858338617531
+        }
+      ],
+      "complaints": [],
+      "aspect_status": "weak_supervision_experimental",
+      "aspect_source": "no_negative_clause",
+      "aspect_probabilities": {
+        "연기 및 캐스팅": 0.0011729741488761662,
+        "스토리 및 전개": 0.0007501900785908595,
+        "연출 및 편집": 0.004235081395154198,
+        "영상 및 시각효과": 0.980696829755314,
+        "음악 및 음향": 0.7237209351929875,
+        "기타": 0.0032090575350164938
+      }
+    },
+    {
+      "review": "최악이고 지루한 영화다.",
+      "domain": "movie",
+      "sentiment": "부정",
+      "binary_sentiment": "부정",
+      "positive_probability": 0.005327685316414297,
+      "confidence": 0.9946723146835857,
+      "uncertain": false,
+      "is_mixed": false,
+      "mixed_method": "contrast_clause_model_predictions",
+      "clauses": [
+        {
+          "text": "최악이고 지루한 영화다.",
+          "sentiment": "부정",
+          "positive_probability": 0.005327685316414297
+        }
+      ],
+      "complaints": [
+        "기타"
+      ],
+      "aspect_status": "weak_supervision_experimental",
+      "aspect_source": "whole_review",
+      "aspect_probabilities": {
+        "연기 및 캐스팅": 0.03938873987240177,
+        "스토리 및 전개": 0.12389450242418436,
+        "연출 및 편집": 0.05855614689150553,
+        "영상 및 시각효과": 0.10001039806604252,
+        "음악 및 음향": 0.029595903689972773,
+        "기타": 0.999600065315081
+      }
+    },
+    {
+      "review": "그냥 보통이다.",
+      "domain": "movie",
+      "sentiment": "부정",
+      "binary_sentiment": "부정",
+      "positive_probability": 0.39444432520063494,
+      "confidence": 0.6055556747993651,
+      "uncertain": false,
+      "is_mixed": false,
+      "mixed_method": "contrast_clause_model_predictions",
+      "clauses": [
+        {
+          "text": "그냥 보통이다.",
+          "sentiment": "부정",
+          "positive_probability": 0.39444432520063494
+        }
+      ],
+      "complaints": [],
+      "aspect_status": "weak_supervision_experimental",
+      "aspect_source": "whole_review",
+      "aspect_probabilities": {
+        "연기 및 캐스팅": 0.0007991880524096901,
+        "스토리 및 전개": 0.0011448706115565926,
+        "연출 및 편집": 0.0010870883686107343,
+        "영상 및 시각효과": 0.0020390611262659153,
+        "음악 및 음향": 0.0029532151663228053,
+        "기타": 0.002681220429672277
+      }
+    }
+  ]
+}

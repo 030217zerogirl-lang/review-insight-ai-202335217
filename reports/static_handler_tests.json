@@ -1,5 +1,6 @@
 {
   "movie_analysis_handler": true,
+  "mixed_analysis_handler": true,
   "game_analysis_handler": true,
   "quoted_csv_handler": true,
   "csv_review_count": 2,
