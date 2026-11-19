@@ -2,8 +2,8 @@
   "student_id": "202335217",
   "name": "김서윤",
   "title": "Review Insight AI 영화게임 리뷰 감성 및 불만 유형 분석 서비스",
-  "github_url": null,
-  "demo_url": null,
+  "github_url": "https://github.com/030217zerogirl-lang/review-insight-ai-202335217",
+  "demo_url": "https://030217zerogirl-lang.github.io/review-insight-ai-202335217/",
   "data_type": "Korean movie review text (NSMC); weak-labeled movie complaints",
   "training": {
     "direct_training": true,
@@ -28,10 +28,11 @@
     "value": 0.8688264143123575
   },
   "incomplete": [
-    "public_github",
-    "public_demo",
     "transformer_finetuning",
     "human_gold_aspect_evaluation",
-    "game_training"
-  ]
+    "game_training",
+    "real_browser_verification",
+    "three_service_screenshots"
+  ],
+  "deployment_verification": "HTTP and remote weights inference passed; real browser UI not verified"
 }

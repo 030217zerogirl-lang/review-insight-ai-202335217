@@ -7,6 +7,9 @@ from src.core import ROOT,clean,analyze
 
 def main():
  start=time.perf_counter();checks={}
+ if not (ROOT/'data/train.csv').exists():
+  from scripts.train import prepare
+  prepare()
  parts={n:pd.read_csv(ROOT/f'data/{n}.csv') for n in ['train','validation','test']}
  for a,b in [('train','validation'),('train','test'),('validation','test')]:
   assert not set(parts[a].text)&set(parts[b].text);checks[f'{a}_{b}_overlap']=0

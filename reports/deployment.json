@@ -1,0 +1,39 @@
+{
+  "github_url": "https://github.com/030217zerogirl-lang/review-insight-ai-202335217",
+  "demo_url": "https://030217zerogirl-lang.github.io/review-insight-ai-202335217/",
+  "verified_at": "2026-11-19T07:22:53.804Z",
+  "http_checks": [
+    {
+      "path": "",
+      "status": 200,
+      "bytes": 3928
+    },
+    {
+      "path": "app.mjs",
+      "status": 200,
+      "bytes": 6244
+    },
+    {
+      "path": "engine.mjs",
+      "status": 200,
+      "bytes": 989
+    },
+    {
+      "path": "style.css",
+      "status": 200,
+      "bytes": 3736
+    },
+    {
+      "path": "models/char_lr.json",
+      "status": 200,
+      "bytes": 5548777
+    },
+    {
+      "path": "models/aspect_movie.json",
+      "status": 200,
+      "bytes": 9351480
+    }
+  ],
+  "public_model_prediction": 0.04487213983047873,
+  "verification": "Public HTTP assets and remote learned-model inference verified in Node.js. Actual browser UI not verified due to computer-use stop."
+}

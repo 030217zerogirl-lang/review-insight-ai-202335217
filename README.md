@@ -3,9 +3,9 @@
 
 ## 0. 프로젝트 정보
 학번: 202335217 / 이름: 김서윤. 개인 기말 프로젝트.
-GitHub URL: 미게시(인증 필요). Demo URL: 미배포. 공개 URL 요구사항은 아직 충족하지 않았다.
+GitHub URL: https://github.com/030217zerogirl-lang/review-insight-ai-202335217 . Demo URL: https://030217zerogirl-lang.github.io/review-insight-ai-202335217/ . Public 저장소와 공개 정적 데모를 배포했다. 실제 브라우저 조작 검증은 제어 도구 중단으로 완료하지 못했다.
 현재 완성 범위: 직접 학습한 감성 모델 2개, 실제 가중치 기반 Streamlit 앱, 약한 지도 영화 불만 모델, 실행 결과 노트북과 제출 PDF/ZIP.
-미완성: Transformer GPU 학습, 사람 검수 정답 기반 불만 모델 평가, 게임 전용 학습, GitHub Public 게시와 공개 배포.
+미완성: Transformer GPU 학습, 사람 검수 정답 기반 불만 모델 평가, 게임 전용 학습, 실제 화면 캡처 3장과 브라우저 검증.
 
 ## 1. 문제 정의
 Who: 영화·게임 이용자와 콘텐츠 운영자. What: 리뷰의 전체 만족도와 부분적 불만을 함께 파악한다. When: 이용 후 리뷰를 쓰거나 여러 리뷰에서 개선 우선순위를 정할 때. Why: 단순 긍정부정 비율만으로는 구체적 개선점을 알기 어렵기 때문이다.
@@ -59,12 +59,12 @@ Streamlit의 리뷰 분석, CSV 대시보드, 프로젝트 소개 화면을 구�
 사용 안내: 영화/게임 선택 → 리뷰 입력 → 분석. 긍정 모델 확률 40~60%면 불확실성을 안내한다. 확률은 보정되지 않은 모델 출력이다. 영화 불만은 전체 감성과 무관하게 항상 분석한다. 게임은 도메인 외 감성 실험이며 불만 모델은 미학습이라고 표시한다.
 문장별 근거 보조 기능은 문장을 같은 분류기로 재예측한다. 키워드 매칭을 AI 판단 근거로 제시하지 않으며 인과적 설명이라고 주장하지 않는다.
 CSV: review 또는 text 열, UTF-8/CP949, 1~1,000행, 5MB 이하. 감성 비율·카테고리 빈도·대표 리뷰·결과 다운로드를 제공한다. 현재 '자주 언급되는 문제'는 범주 빈도로 요약하며 개별 세부 주제 군집화는 구현하지 않았다. 업로드 리뷰는 디스크에 저장하지 않는다.
-실행 검증: 실제 가중치 추론, 분할 교집합, 빈 값·길이 검사, Streamlit 리뷰/소개/대시보드 초기화/게임 경고를 확인했다. CSV 업로드 전체 흐름의 브라우저 검증 여부는 reports/browser_checks.json을 확인한다(파일이 없으면 미검증).
+실행 검증: 실제 가중치 추론, 분할 교집합, 빈 값·길이 검사, Streamlit 리뷰/소개/대시보드 초기화/게임 경고를 확인했다. CSV 처리 코드는 Node DOM 대체 객체 기반 단위 검증을 추가했다(reports/static_handler_tests.json). 실제 브라우저 업로드 흐름은 제어 도구 중단으로 미검증이다.
 로컬 검증 프로세스 관측 RSS: 227.1 MB. 모델 크기: {"aspect_movie.joblib": 3.226, "char_lr.joblib": 1.724, "word_lr.joblib": 0.963} MB. 클라우드 메모리 상한 보장을 의미하지 않는다.
 실제 브라우저 화면 캡처 미확보. 충족으로 표시하지 않음.
 
 ## 7. 배포
-플랫폼 계획: Streamlit Community Cloud. 현재 공개 URL 미배포. GitHub 인증도 정상화가 필요하다. deploy 성공·URL을 지어내지 않았다. docs/deployment.md의 순서로 계정 로그인 후 게시한다.
+플랫폼: GitHub Pages(공개 정적 데모), 로컬 Python Streamlit(원본 앱). 공개 URL: https://030217zerogirl-lang.github.io/review-insight-ai-202335217/ . 인증은 샌드박스 밖에서 재확인하니 유효했다. 직접 학습한 TF-IDF vocabulary/IDF/회귀 계수·절편을 JSON으로 변환하여 브라우저가 동일 수식으로 추론한다. Python 대 JavaScript 42개 리뷰의 최대 확률 차이 1.69e-8 미만. 보고서: reports/browser_model_parity.json. 공개 페이지·JS·모델 파일 HTTP 200과 공개 모델의 실제 예측은 tests/public_deployment.mjs로 검증했다. 실제 브라우저 렌더링·파일 선택·다운로드는 미검증이다. GitHub Pages는 Python 서버를 실행하지 않는다. Streamlit 원본 앱도 별도로 제공한다.
 공식 배포 문서: https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app . 무료 플랜 제한은 변경될 수 있어 배포 당일 공식 상태 문서를 확인해야 한다. 앱은 Transformer를 로드하지 않고 CPU TF-IDF 모델을 사용한다.
 100MB 초과 모델·데이터를 ZIP 또는 GitHub에 넣지 않는다. KLUE 대형 가중치를 추후 만들면 라이선스와 모델 카드가 포함된 외부 저장소에 업로드하고 실제 링크를 기록한다. 현재 존재하지 않는 외부 링크는 없다.
 
@@ -93,3 +93,5 @@ Interesting 1: 영화 감성과 불만은 다른 레이블 체계라 전체 감�
 문제 → 원인 → 시도 → 결과: 최신 PyTorch 설치 OSError → Windows 긴 설치 경로 제한이라는 pip 진단 → torch 2.5.1 안정 버전 설치 재시도 → 실제 최종 상태는 reports/dependency_status.json 확인. GPU 파인튜닝 성공으로 해석하지 않는다.
 향후 데이터 개선: 두 명 검수와 불일치 합의로 영화·게임별 독립 gold test 구축, 작품 단위 분할과 카테고리별 양성 지원 수 확보. 모델 개선: KLUE-BERT GPU 파인튜닝 및 독립 gold 불만 다중 레이블 비교, calibration과 도메인 전이 평가. 서비스 개선: 게임 모델 확보 후 활성화, CSV 비동기 처리·메모리 캐시·배포 모니터링, 공개 URL 예측 회귀 점검.
 개인 프로젝트의 코드 작성·실험 실행·문서 정리에 AI 개발 보조를 사용했다. 자동 레이블을 사람이 만든 정답으로 표시하지 않았으며 미완성 항목도 그대로 공개한다.
+
+추가 문제 해결: 브라우저 제어 호스트 연결 실패와 안전한 URL 식별 실패로 자동 UI 검증이 중단되었다. 다른 브라우저 제어로 우회하지 않고, 학습 가중치를 정적 JSON으로 내보내 수치 일치·HTTP 공개 자산·코드 처리기 검증을 수행했다. 실제 화면 캡처를 만들었다고 주장하지 않았다. GitHub Pages 무료 정적 호스팅은 서버 모델 메모리 제약을 피하지만 첫 모델 다운로드 약 15MB와 브라우저 메모리 비용이 생긴다. 정확한 숫자는 reports/deployment.json에 있다. 향후 완전한 브라우저 실측과 모바일 성능 개선이 필요하다.

@@ -1,0 +1,7 @@
+{
+  "pdf_pages_reviewed": 7,
+  "pdf_visual_layout": "all pages rendered and visually inspected; no clipping or missing glyphs observed",
+  "packaged_app_smoke_test": "passed: extracted ZIP loads learned models and renders 3 prediction metrics",
+  "browser_screenshots": "not available; computer-use stopped",
+  "notebook_outputs": "executed results preserved"
+}
