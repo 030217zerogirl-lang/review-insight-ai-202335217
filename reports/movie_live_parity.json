@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "cases": 20,
+  "analysis_signature": "4059e88d3103ca9c4a5f507860cc266c27d3a2268499b4130ce7a11c28bb4881",
+  "scope": "Python precomputed vs live inference on one genuine review per movie"
+}

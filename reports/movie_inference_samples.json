@@ -1,0 +1,527 @@
+[
+  {
+    "id": "01e76ad83f65e0c2147c",
+    "title": "1987",
+    "text": "대한민국 모든 국민들 모두가 꼭 봐야하는 영화",
+    "rating": 10,
+    "source_file_id": "ce3e0fe8-07fe-4d83-ba88-84116fb02d9f",
+    "source_row_index": 7,
+    "source_url": "https://data.mendeley.com/public-files/datasets/jb5knzh8yv/files/ce3e0fe8-07fe-4d83-ba88-84116fb02d9f/file_downloaded",
+    "review_date": null,
+    "sentiment": "긍정",
+    "binary_sentiment": "긍정",
+    "positive_probability": 0.9697832119355383,
+    "clauses": [
+      {
+        "text": "대한민국 모든 국민들 모두가 꼭 봐야하는 영화",
+        "sentiment": "긍정",
+        "positive_probability": 0.9697832119355383
+      }
+    ],
+    "complaints": [],
+    "uncertain": false,
+    "analysis_signature": "4059e88d3103ca9c4a5f507860cc266c27d3a2268499b4130ce7a11c28bb4881"
+  },
+  {
+    "id": "009b41c8097413b34389",
+    "title": "암살",
+    "text": "2시간동안 시간가는줄 모르고 본 영화에요 추천합니다!",
+    "rating": 10,
+    "source_file_id": "e881f9c8-ee01-486f-927c-90949f535990",
+    "source_row_index": 0,
+    "source_url": "https://data.mendeley.com/public-files/datasets/jb5knzh8yv/files/e881f9c8-ee01-486f-927c-90949f535990/file_downloaded",
+    "review_date": null,
+    "sentiment": "긍정",
+    "binary_sentiment": "긍정",
+    "positive_probability": 0.9850671152708663,
+    "clauses": [
+      {
+        "text": "2시간동안 시간가는줄 모르고 본 영화에요 추천합니다!",
+        "sentiment": "긍정",
+        "positive_probability": 0.9850671152708663
+      }
+    ],
+    "complaints": [],
+    "uncertain": false,
+    "analysis_signature": "4059e88d3103ca9c4a5f507860cc266c27d3a2268499b4130ce7a11c28bb4881"
+  },
+  {
+    "id": "001709bc2d550cc53383",
+    "title": "택시운전사",
+    "text": "역사적 사실을 담아내기엔 부족하고 그렇다고 영화로서의재미도 별로. 전개가 느려서 지루하고 완성도도 떨어짐. 오로지 송강호의 연기에만 의존. 사투리도 어색.",
+    "rating": 6,
+    "source_file_id": "ef9bef11-86e1-4945-85ee-0ddc3df71421",
+    "source_row_index": 7,
+    "source_url": "https://data.mendeley.com/public-files/datasets/jb5knzh8yv/files/ef9bef11-86e1-4945-85ee-0ddc3df71421/file_downloaded",
+    "review_date": null,
+    "sentiment": "부정",
+    "binary_sentiment": "부정",
+    "positive_probability": 0.008361876828100644,
+    "clauses": [
+      {
+        "text": "역사적 사실을 담아내기엔 부족하고 그렇다고 영화로서의재미도 별로.",
+        "sentiment": "부정",
+        "positive_probability": 0.05304877342978198
+      },
+      {
+        "text": "전개가 느려서 지루하고 완성도도 떨어짐.",
+        "sentiment": "부정",
+        "positive_probability": 0.014858832343432259
+      },
+      {
+        "text": "오로지 송강호의 연기에만 의존.",
+        "sentiment": "부정",
+        "positive_probability": 0.33708310134313246
+      },
+      {
+        "text": "사투리도 어색.",
+        "sentiment": "부정",
+        "positive_probability": 0.08851415703622117
+      }
+    ],
+    "complaints": [
+      "연기 및 캐스팅",
+      "스토리 및 전개"
+    ],
+    "uncertain": false,
+    "analysis_signature": "4059e88d3103ca9c4a5f507860cc266c27d3a2268499b4130ce7a11c28bb4881"
+  },
+  {
+    "id": "01d9e41bb612919a4406",
+    "title": "공조",
+    "text": "배우들 연기력이 좋아서 볼만했음.",
+    "rating": 8,
+    "source_file_id": "414cc808-0558-439e-8eb8-55e9bcb83832",
+    "source_row_index": 3,
+    "source_url": "https://data.mendeley.com/public-files/datasets/jb5knzh8yv/files/414cc808-0558-439e-8eb8-55e9bcb83832/file_downloaded",
+    "review_date": null,
+    "sentiment": "긍정",
+    "binary_sentiment": "긍정",
+    "positive_probability": 0.6911096940436633,
+    "clauses": [
+      {
+        "text": "배우들 연기력이 좋아서 볼만했음.",
+        "sentiment": "긍정",
+        "positive_probability": 0.6911096940436633
+      }
+    ],
+    "complaints": [],
+    "uncertain": false,
+    "analysis_signature": "4059e88d3103ca9c4a5f507860cc266c27d3a2268499b4130ce7a11c28bb4881"
+  },
+  {
+    "id": "015e5da252b88c29dc30",
+    "title": "완벽한 타인",
+    "text": "올해 본 영화중 최고입니다 ㅎㅎ",
+    "rating": 10,
+    "source_file_id": "13c65e2e-dcc3-4430-b869-5d5a79506765",
+    "source_row_index": 0,
+    "source_url": "https://data.mendeley.com/public-files/datasets/jb5knzh8yv/files/13c65e2e-dcc3-4430-b869-5d5a79506765/file_downloaded",
+    "review_date": null,
+    "sentiment": "긍정",
+    "binary_sentiment": "긍정",
+    "positive_probability": 0.9841122097811537,
+    "clauses": [
+      {
+        "text": "올해 본 영화중 최고입니다 ᄒᄒ",
+        "sentiment": "긍정",
+        "positive_probability": 0.9841122097811537
+      }
+    ],
+    "complaints": [],
+    "uncertain": false,
+    "analysis_signature": "4059e88d3103ca9c4a5f507860cc266c27d3a2268499b4130ce7a11c28bb4881"
+  },
+  {
+    "id": "052b946dba5ef0a5fda2",
+    "title": "베테랑",
+    "text": "오오오 방금 보고나왔는데 오오오 말이 필요없음요 ㅎㄷㄷ 최고최고최고",
+    "rating": 10,
+    "source_file_id": "804e8fc5-145a-40ef-a689-efae658b8e60",
+    "source_row_index": 3,
+    "source_url": "https://data.mendeley.com/public-files/datasets/jb5knzh8yv/files/804e8fc5-145a-40ef-a689-efae658b8e60/file_downloaded",
+    "review_date": null,
+    "sentiment": "긍정",
+    "binary_sentiment": "긍정",
+    "positive_probability": 0.9918161602590939,
+    "clauses": [
+      {
+        "text": "오오오 방금 보고나왔는데",
+        "sentiment": "불확실",
+        "positive_probability": 0.5915292553916398
+      },
+      {
+        "text": "오오오 말이 필요없음요 ᄒᄃᄃ 최고최고최고",
+        "sentiment": "긍정",
+        "positive_probability": 0.9972660503070223
+      }
+    ],
+    "complaints": [],
+    "uncertain": false,
+    "analysis_signature": "4059e88d3103ca9c4a5f507860cc266c27d3a2268499b4130ce7a11c28bb4881"
+  },
+  {
+    "id": "0295c407958e43c01600",
+    "title": "극한직업",
+    "text": "재미있다, 웃기다, 볼만하다, 그러나 이영화가 전체 관객수 2위 인것은 이해불가...",
+    "rating": 6,
+    "source_file_id": "b4ad836c-a1a2-47d3-a15f-7880d54f37b7",
+    "source_row_index": 18,
+    "source_url": "https://data.mendeley.com/public-files/datasets/jb5knzh8yv/files/b4ad836c-a1a2-47d3-a15f-7880d54f37b7/file_downloaded",
+    "review_date": null,
+    "sentiment": "긍정",
+    "binary_sentiment": "긍정",
+    "positive_probability": 0.6289359831747285,
+    "clauses": [
+      {
+        "text": "재미있다, 웃기다, 볼만하다, 그러나 이영화가 전체 관객수 2위 인것은 이해불가...",
+        "sentiment": "긍정",
+        "positive_probability": 0.6289359831747285
+      }
+    ],
+    "complaints": [],
+    "uncertain": false,
+    "analysis_signature": "4059e88d3103ca9c4a5f507860cc266c27d3a2268499b4130ce7a11c28bb4881"
+  },
+  {
+    "id": "0013e6bed3995731105d",
+    "title": "범죄도시",
+    "text": "글 잘 안 남기는데 진짜 강추!!!",
+    "rating": 10,
+    "source_file_id": "9b899e6d-65d1-475d-a7c2-ff621d3b53d5",
+    "source_row_index": 3,
+    "source_url": "https://data.mendeley.com/public-files/datasets/jb5knzh8yv/files/9b899e6d-65d1-475d-a7c2-ff621d3b53d5/file_downloaded",
+    "review_date": null,
+    "sentiment": "혼합",
+    "binary_sentiment": "긍정",
+    "positive_probability": 0.7915226362494638,
+    "clauses": [
+      {
+        "text": "글 잘 안 남기는데",
+        "sentiment": "부정",
+        "positive_probability": 0.3334113957692134
+      },
+      {
+        "text": "진짜 강추!!",
+        "sentiment": "긍정",
+        "positive_probability": 0.9720859860362587
+      }
+    ],
+    "complaints": [],
+    "uncertain": false,
+    "analysis_signature": "4059e88d3103ca9c4a5f507860cc266c27d3a2268499b4130ce7a11c28bb4881"
+  },
+  {
+    "id": "0dc07ed72f7d09590243",
+    "title": "부산행",
+    "text": "재밌게 잘봄 밀실이라 더 쫄깃한듯",
+    "rating": 10,
+    "source_file_id": "c97896a9-32ae-47c4-a3a8-a4beaf3df493",
+    "source_row_index": 30,
+    "source_url": "https://data.mendeley.com/public-files/datasets/jb5knzh8yv/files/c97896a9-32ae-47c4-a3a8-a4beaf3df493/file_downloaded",
+    "review_date": null,
+    "sentiment": "긍정",
+    "binary_sentiment": "긍정",
+    "positive_probability": 0.9752564820597928,
+    "clauses": [
+      {
+        "text": "재밌게 잘봄 밀실이라 더 쫄깃한듯",
+        "sentiment": "긍정",
+        "positive_probability": 0.9752564820597928
+      }
+    ],
+    "complaints": [],
+    "uncertain": false,
+    "analysis_signature": "4059e88d3103ca9c4a5f507860cc266c27d3a2268499b4130ce7a11c28bb4881"
+  },
+  {
+    "id": "026cc276e2cc5316e4e4",
+    "title": "기생충",
+    "text": "와.... 진짜 영화보면서 감탄을 하면서 보기는 오랜만이다... 소름",
+    "rating": 10,
+    "source_file_id": "68a8ef8a-7287-4ef1-aafb-2a477bf44afa",
+    "source_row_index": 1,
+    "source_url": "https://data.mendeley.com/public-files/datasets/jb5knzh8yv/files/68a8ef8a-7287-4ef1-aafb-2a477bf44afa/file_downloaded",
+    "review_date": null,
+    "sentiment": "긍정",
+    "binary_sentiment": "긍정",
+    "positive_probability": 0.8535074175881795,
+    "clauses": [
+      {
+        "text": "와....",
+        "sentiment": "긍정",
+        "positive_probability": 0.7857490065113886
+      },
+      {
+        "text": "진짜 영화보면서 감탄을 하면서 보기는 오랜만이다...",
+        "sentiment": "긍정",
+        "positive_probability": 0.6147230573647641
+      },
+      {
+        "text": "소름",
+        "sentiment": "긍정",
+        "positive_probability": 0.9723374646780114
+      }
+    ],
+    "complaints": [],
+    "uncertain": false,
+    "analysis_signature": "4059e88d3103ca9c4a5f507860cc266c27d3a2268499b4130ce7a11c28bb4881"
+  },
+  {
+    "id": "02834a18af939ae7cd70",
+    "title": "군함도",
+    "text": "후손들에게 제대로된 역사를 가르켜주세요, 역사배경으로 돈이나 벌 생각하지말고요",
+    "rating": 1,
+    "source_file_id": "a77da6e9-a1cb-417c-b67b-b3d3bb87d854",
+    "source_row_index": 1197,
+    "source_url": "https://data.mendeley.com/public-files/datasets/jb5knzh8yv/files/a77da6e9-a1cb-417c-b67b-b3d3bb87d854/file_downloaded",
+    "review_date": null,
+    "sentiment": "긍정",
+    "binary_sentiment": "긍정",
+    "positive_probability": 0.6901210888671161,
+    "clauses": [
+      {
+        "text": "후손들에게 제대로된 역사를 가르켜주세요, 역사배경으로 돈이나 벌 생각하지말고요",
+        "sentiment": "긍정",
+        "positive_probability": 0.6901210888671161
+      }
+    ],
+    "complaints": [],
+    "uncertain": false,
+    "analysis_signature": "4059e88d3103ca9c4a5f507860cc266c27d3a2268499b4130ce7a11c28bb4881"
+  },
+  {
+    "id": "00ef5e769ca4848121e7",
+    "title": "신과함께-죄와 벌",
+    "text": "눈물콧물질질 내남친 우는거 처음봄 ;;",
+    "rating": 9,
+    "source_file_id": "2ff108e2-8434-4834-87f0-af9de1fb1ca7",
+    "source_row_index": 3,
+    "source_url": "https://data.mendeley.com/public-files/datasets/jb5knzh8yv/files/2ff108e2-8434-4834-87f0-af9de1fb1ca7/file_downloaded",
+    "review_date": null,
+    "sentiment": "부정",
+    "binary_sentiment": "부정",
+    "positive_probability": 0.11778730623986937,
+    "clauses": [
+      {
+        "text": "눈물콧물질질 내남친 우는거 처음봄",
+        "sentiment": "부정",
+        "positive_probability": 0.12129091231264312
+      }
+    ],
+    "complaints": [],
+    "uncertain": false,
+    "analysis_signature": "4059e88d3103ca9c4a5f507860cc266c27d3a2268499b4130ce7a11c28bb4881"
+  },
+  {
+    "id": "02e9e05444e3d378b392",
+    "title": "신과함께-인과 연",
+    "text": "긴 런닝타임에 일편과 중복된 저승 코스로 전편에선 신기햇던 저승배경이 그대로 나와 지루했고 쥬라기공원은 영화랑 너무 안어울리지 않았나 싶음. 충격적인 사실이 계속 나오면서 나중엔 반전이란 생각도 안듬. 정신없이 많은 내용 짜집기라 큰 한방이 없어 아쉽",
+    "rating": 7,
+    "source_file_id": "6f25dffa-2ed8-47a4-8202-51a75d22dd7a",
+    "source_row_index": 3,
+    "source_url": "https://data.mendeley.com/public-files/datasets/jb5knzh8yv/files/6f25dffa-2ed8-47a4-8202-51a75d22dd7a/file_downloaded",
+    "review_date": null,
+    "sentiment": "혼합",
+    "binary_sentiment": "부정",
+    "positive_probability": 0.10938774271895046,
+    "clauses": [
+      {
+        "text": "긴 런닝타임에 일편과 중복된 저승 코스로 전편에선 신기햇던 저승배경이 그대로 나와 지루했고 쥬라기공원은 영화랑 너무 안어울리지 않았나 싶음.",
+        "sentiment": "부정",
+        "positive_probability": 0.08007751506480916
+      },
+      {
+        "text": "충격적인 사실이 계속 나오면서 나중엔 반전이란 생각도 안듬.",
+        "sentiment": "긍정",
+        "positive_probability": 0.6683757064458472
+      },
+      {
+        "text": "정신없이 많은 내용 짜집기라 큰 한방이 없어 아쉽",
+        "sentiment": "부정",
+        "positive_probability": 0.08820512352409873
+      }
+    ],
+    "complaints": [
+      "연기 및 캐스팅"
+    ],
+    "uncertain": false,
+    "analysis_signature": "4059e88d3103ca9c4a5f507860cc266c27d3a2268499b4130ce7a11c28bb4881"
+  },
+  {
+    "id": "0024c6a3b95202553ff2",
+    "title": "마스터",
+    "text": "정의는 반드시 승리한다~~",
+    "rating": 10,
+    "source_file_id": "6d3d6097-baec-4330-80f8-25dbef89eb68",
+    "source_row_index": 106,
+    "source_url": "https://data.mendeley.com/public-files/datasets/jb5knzh8yv/files/6d3d6097-baec-4330-80f8-25dbef89eb68/file_downloaded",
+    "review_date": null,
+    "sentiment": "긍정",
+    "binary_sentiment": "긍정",
+    "positive_probability": 0.8428160109208354,
+    "clauses": [
+      {
+        "text": "정의는 반드시 승리한다~~",
+        "sentiment": "긍정",
+        "positive_probability": 0.8428160109208354
+      }
+    ],
+    "complaints": [],
+    "uncertain": false,
+    "analysis_signature": "4059e88d3103ca9c4a5f507860cc266c27d3a2268499b4130ce7a11c28bb4881"
+  },
+  {
+    "id": "08cf0bf22824975e5597",
+    "title": "청년경찰",
+    "text": "재미나게봤어요   시간가는줄모르고  봤음    연기도최고",
+    "rating": 10,
+    "source_file_id": "81f9922b-931e-4068-bea5-ae01392e5ab3",
+    "source_row_index": 6,
+    "source_url": "https://data.mendeley.com/public-files/datasets/jb5knzh8yv/files/81f9922b-931e-4068-bea5-ae01392e5ab3/file_downloaded",
+    "review_date": null,
+    "sentiment": "긍정",
+    "binary_sentiment": "긍정",
+    "positive_probability": 0.9921394248304278,
+    "clauses": [
+      {
+        "text": "재미나게봤어요 시간가는줄모르고 봤음 연기도최고",
+        "sentiment": "긍정",
+        "positive_probability": 0.9921394248304278
+      }
+    ],
+    "complaints": [],
+    "uncertain": false,
+    "analysis_signature": "4059e88d3103ca9c4a5f507860cc266c27d3a2268499b4130ce7a11c28bb4881"
+  },
+  {
+    "id": "0ced0fe2b53827ef1996",
+    "title": "더 킹",
+    "text": "좀비 선동영화네 드럽다",
+    "rating": 1,
+    "source_file_id": "9bcc0e19-a6e1-4f43-97a2-11969d58e204",
+    "source_row_index": 53,
+    "source_url": "https://data.mendeley.com/public-files/datasets/jb5knzh8yv/files/9bcc0e19-a6e1-4f43-97a2-11969d58e204/file_downloaded",
+    "review_date": null,
+    "sentiment": "부정",
+    "binary_sentiment": "부정",
+    "positive_probability": 0.014985742551516657,
+    "clauses": [
+      {
+        "text": "좀비 선동영화네 드럽다",
+        "sentiment": "부정",
+        "positive_probability": 0.014985742551516657
+      }
+    ],
+    "complaints": [],
+    "uncertain": false,
+    "analysis_signature": "4059e88d3103ca9c4a5f507860cc266c27d3a2268499b4130ce7a11c28bb4881"
+  },
+  {
+    "id": "002de93ae6d35fa2ab18",
+    "title": "검사외전",
+    "text": "재미있어요또보고싶어요",
+    "rating": 10,
+    "source_file_id": "9a3b98f5-e748-497e-b485-6365f14e6736",
+    "source_row_index": 14,
+    "source_url": "https://data.mendeley.com/public-files/datasets/jb5knzh8yv/files/9a3b98f5-e748-497e-b485-6365f14e6736/file_downloaded",
+    "review_date": null,
+    "sentiment": "긍정",
+    "binary_sentiment": "긍정",
+    "positive_probability": 0.9973520356785931,
+    "clauses": [
+      {
+        "text": "재미있어요또보고싶어요",
+        "sentiment": "긍정",
+        "positive_probability": 0.9973520356785931
+      }
+    ],
+    "complaints": [],
+    "uncertain": false,
+    "analysis_signature": "4059e88d3103ca9c4a5f507860cc266c27d3a2268499b4130ce7a11c28bb4881"
+  },
+  {
+    "id": "02c2c03ffe9e022d5af9",
+    "title": "변호인",
+    "text": "좋은 영화고 배우들의 출중한 연기는 만족스럽지만...정치 성향을 드러내고 싶진 않지만 현 시국을 보면 조금 찝찝하다 이게 그들이 바라던 세상이란 말인가진영만 바뀌고 하는 짓은 똑같아 보이는데",
+    "rating": 8,
+    "source_file_id": "774c2dbd-2971-450d-9efb-03b58e801dff",
+    "source_row_index": 11,
+    "source_url": "https://data.mendeley.com/public-files/datasets/jb5knzh8yv/files/774c2dbd-2971-450d-9efb-03b58e801dff/file_downloaded",
+    "review_date": null,
+    "sentiment": "혼합",
+    "binary_sentiment": "긍정",
+    "positive_probability": 0.6271068111532452,
+    "clauses": [
+      {
+        "text": "좋은 영화고 배우들의 출중한 연기는 만족스럽지만",
+        "sentiment": "긍정",
+        "positive_probability": 0.9021725607776561
+      },
+      {
+        "text": "...정치 성향을 드러내고 싶진 않지만",
+        "sentiment": "부정",
+        "positive_probability": 0.3616492884947965
+      },
+      {
+        "text": "현 시국을 보면 조금 찝찝하다 이게 그들이 바라던 세상이란 말인가진영만 바뀌고 하는 짓은 똑같아 보이는데",
+        "sentiment": "부정",
+        "positive_probability": 0.32862879665211864
+      }
+    ],
+    "complaints": [],
+    "uncertain": false,
+    "analysis_signature": "4059e88d3103ca9c4a5f507860cc266c27d3a2268499b4130ce7a11c28bb4881"
+  },
+  {
+    "id": "019da228b8a7a761c297",
+    "title": "명량",
+    "text": "역시 영화는 입김이 중요하네요. 천만영화는 아닌듯",
+    "rating": 7,
+    "source_file_id": "9bcc0e19-a6e1-4f43-97a2-11969d58e204",
+    "source_row_index": 89,
+    "source_url": "https://data.mendeley.com/public-files/datasets/jb5knzh8yv/files/9bcc0e19-a6e1-4f43-97a2-11969d58e204/file_downloaded",
+    "review_date": null,
+    "sentiment": "부정",
+    "binary_sentiment": "부정",
+    "positive_probability": 0.44031877288865423,
+    "clauses": [
+      {
+        "text": "역시 영화는 입김이 중요하네요.",
+        "sentiment": "불확실",
+        "positive_probability": 0.5895487152543172
+      },
+      {
+        "text": "천만영화는 아닌듯",
+        "sentiment": "부정",
+        "positive_probability": 0.17722347645501774
+      }
+    ],
+    "complaints": [],
+    "uncertain": true,
+    "analysis_signature": "4059e88d3103ca9c4a5f507860cc266c27d3a2268499b4130ce7a11c28bb4881"
+  },
+  {
+    "id": "088272801e5630350239",
+    "title": "엑시트",
+    "text": "시간가는줄 모르고 관람",
+    "rating": 8,
+    "source_file_id": "4eaec9aa-bcdb-4ef7-88f2-ae49723307bf",
+    "source_row_index": 5,
+    "source_url": "https://data.mendeley.com/public-files/datasets/jb5knzh8yv/files/4eaec9aa-bcdb-4ef7-88f2-ae49723307bf/file_downloaded",
+    "review_date": null,
+    "sentiment": "긍정",
+    "binary_sentiment": "긍정",
+    "positive_probability": 0.9207670393425547,
+    "clauses": [
+      {
+        "text": "시간가는줄 모르고 관람",
+        "sentiment": "긍정",
+        "positive_probability": 0.9207670393425547
+      }
+    ],
+    "complaints": [],
+    "uncertain": false,
+    "analysis_signature": "4059e88d3103ca9c4a5f507860cc266c27d3a2268499b4130ce7a11c28bb4881"
+  }
+]

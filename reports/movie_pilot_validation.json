@@ -1,0 +1,20 @@
+{
+  "movie_count": 5,
+  "passed": true,
+  "review_counts": {
+    "1987": 156,
+    "암살": 149,
+    "택시운전사": 168,
+    "공조": 138,
+    "완벽한 타인": 138
+  },
+  "checks": [
+    "source-title association",
+    "source hash",
+    "rating range",
+    "deduplication",
+    "count and ratio denominators",
+    "multi-label independent recount"
+  ],
+  "analysis_signature": "4059e88d3103ca9c4a5f507860cc266c27d3a2268499b4130ce7a11c28bb4881"
+}

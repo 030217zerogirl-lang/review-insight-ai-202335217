@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "movies": 20,
+  "cases": 20,
+  "max_probability_difference": 5.5706694812585056e-9,
+  "analysis_signature": "4059e88d3103ca9c4a5f507860cc266c27d3a2268499b4130ce7a11c28bb4881",
+  "scope": "Python snapshot vs JavaScript live engine; not browser visual QA"
+}

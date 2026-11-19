@@ -1,0 +1,35 @@
+{
+  "task": "movie_platform_redesign",
+  "updated_at_kst": "2026-11-19T17:30:09.125014+09:00",
+  "status": "paused_at_user_request_until_resumed",
+  "requested_stop_kst": "2026-11-19T17:30:00+09:00",
+  "completed": [
+    "existing_code_review",
+    "licensed_source_verified",
+    "600_source_files_downloaded_sha256_verified",
+    "20770_history_rows_collected",
+    "five_movie_pilot_validated",
+    "20_movies_1478_genuine_reviews_precomputed",
+    "movie_statistics_tests_passed",
+    "20_movie_python_javascript_live_parity_passed",
+    "12_case_context_audit_3_mismatches_recorded",
+    "five_menu_responsive_ui_draft_saved",
+    "draft_list_detail_comparison_search_direct_csv_handler_tests_passed"
+  ],
+  "pending": [
+    "verify_release_year_metadata",
+    "real_PC_mobile_browser_QA_and_screenshots",
+    "integrate_UI_draft_into_web",
+    "runtime_model_manifest_consistency_check",
+    "update_Streamlit_movie_pages",
+    "offline_cache_and_loading_optimization",
+    "update_README_PDF_notebooks_PPT_prompt",
+    "update_clean_submission_zip",
+    "deploy_and_verify_public_site"
+  ],
+  "public_site_changed": false,
+  "submission_updated_for_new_movie_feature": false,
+  "draft_ui_directory": "developer_notes/website-v3",
+  "analysis_signature": "4059e88d3103ca9c4a5f507860cc266c27d3a2268499b4130ce7a11c28bb4881",
+  "resume_instruction": "Read developer_notes/WORK_STATE.md first; continue unfinished integration, not data collection from scratch."
+}

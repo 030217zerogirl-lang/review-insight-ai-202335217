@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "criteria_version": "ri-clause-v2-p60-n40-aspect50-negative-clause",
+  "model_files": {
+    "char_lr.joblib": "6e9d726ebda0bf2e373f53322f167b5aa5d790c29cce61b256c5984cb82c43f5",
+    "aspect_movie.joblib": "a2c15f3766fb4f982f412e097e3a4f9748afb62a9508cac89d551f8c522985b6"
+  },
+  "browser_models": {
+    "char_lr.json": "a88dfd09df4f38d1c38ffce94065bcf8de79d984fcab735a9d421b8f2a34dcdb",
+    "aspect_movie.json": "0bc762af03ef96c20511462b6b5df6acc28776d7003a8f5ec2363055eae6b704"
+  },
+  "python_engine_sha256": "edd612f7b146da8a442b76de60818220a0f8a3a33c317219adfba15b3bbd8f06",
+  "browser_engine_sha256": "3ad67151b0566f588aaf0b30dccbe1cd7806e8d23511aeba626d8786fdea0358",
+  "positive_clause_threshold": 0.6,
+  "negative_clause_threshold": 0.4,
+  "aspect_threshold": 0.5,
+  "aspect_calibrated": false,
+  "analysis_signature": "4059e88d3103ca9c4a5f507860cc266c27d3a2268499b4130ce7a11c28bb4881"
+}

@@ -1,0 +1,14 @@
+﻿import fs from 'node:fs';
+const nodes=new Map(),callbacks={},make=()=>({value:'',textContent:'',innerHTML:'',disabled:false,hidden:false,files:[],className:'',dataset:{},classList:{toggle(){}},addEventListener(type,fn){this[type]=fn;},click(){},replaceChildren(){this.innerHTML='';}});
+const get=id=>{if(!nodes.has(id))nodes.set(id,make());return nodes.get(id);};
+globalThis.document={getElementById:get,querySelectorAll:()=>[],addEventListener(){},createElement:()=>make()};globalThis.location={hash:'#movies'};globalThis.window={addEventListener(type,fn){callbacks[type]=fn;},scrollTo(){}};
+globalThis.fetch=async url=>({ok:true,json:async()=>JSON.parse(fs.readFileSync(new URL(url),'utf8'))});globalThis.alert=message=>{throw Error(message);};
+get('sort').value='rating';get('minimum').value='0';get('year').value='';get('domain').value='movie';
+await import('../developer_notes/website-v3/app.mjs');
+if(!get('movie-list').innerHTML.includes('택시운전사'))throw Error('List failed');
+location.hash='#film/kr-01';callbacks.hashchange();if(!get('detail').innerHTML.includes('1987')||!get('detail').innerHTML.includes('수록 리뷰 평점'))throw Error('Detail failed');
+location.hash='#compare/kr-01/kr-02';callbacks.hashchange();if(!get('compare').innerHTML.includes('암살'))throw Error('Comparison failed');
+get('search').value='부산행';get('search').input();if(!get('movie-list').innerHTML.includes('부산행')||get('movie-list').innerHTML.includes('택시운전사'))throw Error('Search failed');
+get('review').value='음악은 좋은데 스토리는그닥..';await get('analyze').onclick();if(!get('result').innerHTML.includes('혼합'))throw Error('Direct mixed failed');
+const buffer=new TextEncoder().encode('review\n"음악은 좋은데 스토리는그닥.."\n"재미있고 좋았다."').buffer;get('upload').files=[{size:buffer.byteLength,arrayBuffer:async()=>buffer}];await get('upload').onchange();if(!get('batch-status').textContent.includes('2개 리뷰 분석을 마쳤습니다.'))throw Error('CSV failed: '+get('batch-status').textContent);
+const report={passed:true,list:true,detail:true,comparison:true,search:true,direct_mixed:true,csv:true,scope:'DOM-stub handler tests. No real PC/mobile rendering, file picker or screenshot validation.'};fs.writeFileSync(new URL('../reports/movie_ui_draft_tests.json',import.meta.url),JSON.stringify(report,null,2));console.log(report);

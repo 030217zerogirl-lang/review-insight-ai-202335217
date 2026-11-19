@@ -1,0 +1,235 @@
+{
+  "purpose": "controlled context/negation probes; not human-gold dataset evaluation",
+  "cases": 12,
+  "mismatches": 3,
+  "aspect_gold_test_available": false,
+  "calibration_performed": false,
+  "calibration_reason": "No independent gold aspect labels. Weak-label agreement cannot calibrate real correctness.",
+  "display_policy": "Do not display raw aspect sigmoid scores as correctness probabilities. Movie graphs show classified review counts and sample-denominator shares.",
+  "results": [
+    {
+      "synthetic_probe": true,
+      "text": "연기가 정말 훌륭하고 감동적이다.",
+      "expected_categories_for_probe": [],
+      "predicted_categories": [],
+      "matches_probe_expectation": true,
+      "sentiment": "긍정",
+      "raw_aspect_scores": {
+        "연기 및 캐스팅": 0.06252898603497993,
+        "스토리 및 전개": 0.003580464663926855,
+        "연출 및 편집": 0.0019542569667514854,
+        "영상 및 시각효과": 0.005203153411551791,
+        "음악 및 음향": 0.0029251473964725656,
+        "기타": 0.001247116273293312
+      }
+    },
+    {
+      "synthetic_probe": true,
+      "text": "연기가 너무 어색하고 실망스럽다.",
+      "expected_categories_for_probe": [
+        "연기 및 캐스팅"
+      ],
+      "predicted_categories": [
+        "연기 및 캐스팅"
+      ],
+      "matches_probe_expectation": true,
+      "sentiment": "부정",
+      "raw_aspect_scores": {
+        "연기 및 캐스팅": 0.9830293026663419,
+        "스토리 및 전개": 0.08974778287261767,
+        "연출 및 편집": 0.10836866488578457,
+        "영상 및 시각효과": 0.01807187174851151,
+        "음악 및 음향": 0.011257237264791739,
+        "기타": 0.015028551156068777
+      }
+    },
+    {
+      "synthetic_probe": true,
+      "text": "음악이 정말 좋다.",
+      "expected_categories_for_probe": [],
+      "predicted_categories": [],
+      "matches_probe_expectation": true,
+      "sentiment": "긍정",
+      "raw_aspect_scores": {
+        "연기 및 캐스팅": 0.0003994896780440804,
+        "스토리 및 전개": 0.0006502885158732981,
+        "연출 및 편집": 0.00139740347836804,
+        "영상 및 시각효과": 0.0025582546474097567,
+        "음악 및 음향": 0.4421217584820052,
+        "기타": 0.004279848631487047
+      }
+    },
+    {
+      "synthetic_probe": true,
+      "text": "음악이 정말 별로다.",
+      "expected_categories_for_probe": [
+        "음악 및 음향"
+      ],
+      "predicted_categories": [
+        "음악 및 음향"
+      ],
+      "matches_probe_expectation": true,
+      "sentiment": "부정",
+      "raw_aspect_scores": {
+        "연기 및 캐스팅": 0.04600750093755878,
+        "스토리 및 전개": 0.01266267758423116,
+        "연출 및 편집": 0.01991182464737957,
+        "영상 및 시각효과": 0.004992981399280187,
+        "음악 및 음향": 0.8531204066337935,
+        "기타": 0.039676988159984446
+      }
+    },
+    {
+      "synthetic_probe": true,
+      "text": "스토리는 너무 지루하다.",
+      "expected_categories_for_probe": [
+        "스토리 및 전개"
+      ],
+      "predicted_categories": [
+        "스토리 및 전개"
+      ],
+      "matches_probe_expectation": true,
+      "sentiment": "부정",
+      "raw_aspect_scores": {
+        "연기 및 캐스팅": 0.009022901994498598,
+        "스토리 및 전개": 0.9994335520299552,
+        "연출 및 편집": 0.0258607320162502,
+        "영상 및 시각효과": 0.011805432568458375,
+        "음악 및 음향": 0.011739612124031306,
+        "기타": 0.05434432082392344
+      }
+    },
+    {
+      "synthetic_probe": true,
+      "text": "스토리는 전혀 지루하지 않다.",
+      "expected_categories_for_probe": [],
+      "predicted_categories": [],
+      "matches_probe_expectation": true,
+      "sentiment": "긍정",
+      "raw_aspect_scores": {
+        "연기 및 캐스팅": 0.053039222088617735,
+        "스토리 및 전개": 0.9965186415543467,
+        "연출 및 편집": 0.035993384173855045,
+        "영상 및 시각효과": 0.019536076712482423,
+        "음악 및 음향": 0.015543831837990444,
+        "기타": 0.10075314538659967
+      }
+    },
+    {
+      "synthetic_probe": true,
+      "text": "음악은 좋은데 스토리는그닥..",
+      "expected_categories_for_probe": [
+        "스토리 및 전개"
+      ],
+      "predicted_categories": [
+        "스토리 및 전개"
+      ],
+      "matches_probe_expectation": true,
+      "sentiment": "혼합",
+      "raw_aspect_scores": {
+        "연기 및 캐스팅": 0.000604566733543994,
+        "스토리 및 전개": 0.9959884808341791,
+        "연출 및 편집": 0.0016203508918807888,
+        "영상 및 시각효과": 0.0053992696703926354,
+        "음악 및 음향": 0.0014411509814406945,
+        "기타": 0.00665777363446158
+      }
+    },
+    {
+      "synthetic_probe": true,
+      "text": "영상은 좋지만 음악은 별로다.",
+      "expected_categories_for_probe": [
+        "음악 및 음향"
+      ],
+      "predicted_categories": [
+        "영상 및 시각효과",
+        "음악 및 음향"
+      ],
+      "matches_probe_expectation": false,
+      "sentiment": "부정",
+      "raw_aspect_scores": {
+        "연기 및 캐스팅": 0.04112585313505765,
+        "스토리 및 전개": 0.012841314336835458,
+        "연출 및 편집": 0.0047739340358335935,
+        "영상 및 시각효과": 0.9949800506457246,
+        "음악 및 음향": 0.9990164569573455,
+        "기타": 0.0364634675484123
+      }
+    },
+    {
+      "synthetic_probe": true,
+      "text": "연기는 나쁘지 않다.",
+      "expected_categories_for_probe": [],
+      "predicted_categories": [
+        "연기 및 캐스팅"
+      ],
+      "matches_probe_expectation": false,
+      "sentiment": "부정",
+      "raw_aspect_scores": {
+        "연기 및 캐스팅": 0.808048055454687,
+        "스토리 및 전개": 0.002769028202146033,
+        "연출 및 편집": 0.0004952313650786419,
+        "영상 및 시각효과": 0.007013360114277127,
+        "음악 및 음향": 0.0016361725030814313,
+        "기타": 0.003719117483331994
+      }
+    },
+    {
+      "synthetic_probe": true,
+      "text": "편집이 엉망이라 집중이 안 된다.",
+      "expected_categories_for_probe": [
+        "연출 및 편집"
+      ],
+      "predicted_categories": [
+        "연출 및 편집"
+      ],
+      "matches_probe_expectation": true,
+      "sentiment": "부정",
+      "raw_aspect_scores": {
+        "연기 및 캐스팅": 0.010881330279264996,
+        "스토리 및 전개": 0.017509039201872793,
+        "연출 및 편집": 0.8805777304604661,
+        "영상 및 시각효과": 0.023132142325479513,
+        "음악 및 음향": 0.011193806446800032,
+        "기타": 0.022471504954136787
+      }
+    },
+    {
+      "synthetic_probe": true,
+      "text": "재미있고 즐거웠다.",
+      "expected_categories_for_probe": [],
+      "predicted_categories": [],
+      "matches_probe_expectation": true,
+      "sentiment": "긍정",
+      "raw_aspect_scores": {
+        "연기 및 캐스팅": 0.0005144479548212437,
+        "스토리 및 전개": 0.00034010796926987386,
+        "연출 및 편집": 0.00038153612250862003,
+        "영상 및 시각효과": 0.0015972333349147355,
+        "음악 및 음향": 0.00018776019267598273,
+        "기타": 0.002713309005394183
+      }
+    },
+    {
+      "synthetic_probe": true,
+      "text": "스토리만 좋고 연기가 별로다.",
+      "expected_categories_for_probe": [
+        "연기 및 캐스팅"
+      ],
+      "predicted_categories": [
+        "연기 및 캐스팅",
+        "스토리 및 전개"
+      ],
+      "matches_probe_expectation": false,
+      "sentiment": "부정",
+      "raw_aspect_scores": {
+        "연기 및 캐스팅": 0.9888787224576684,
+        "스토리 및 전개": 0.9229518084656884,
+        "연출 및 편집": 0.031700645371055866,
+        "영상 및 시각효과": 0.00829636892105262,
+        "음악 및 음향": 0.02991540624496354,
+        "기타": 0.00868062974812533
+      }
+    }
+  ]
+}

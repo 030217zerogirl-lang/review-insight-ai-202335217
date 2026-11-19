@@ -18,3 +18,14 @@ scripts/prepare_delivery.py
 scripts/refresh_results_notebook.py
 scripts/finish_mixed_update.py
 scripts/check_clean_delivery.py
+
+scripts/sync_final_delivery.py
+data/movie_raw/
+reports/mendeley_*.json
+reports/movie_title_availability.json
+scripts/inspect_movie*.py
+scripts/list_movie_files.py
+scripts/find_movie_downloads.py
+scripts/catalogue_movie_source.py
+scripts/get_movie_catalogue.py
+scripts/inspect_review_schema.py

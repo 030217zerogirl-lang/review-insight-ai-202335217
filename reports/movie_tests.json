@@ -1,0 +1,37 @@
+{
+  "passed": true,
+  "movies": 20,
+  "genuine_review_count": 1478,
+  "movie_review_counts": {
+    "1987": 156,
+    "암살": 149,
+    "택시운전사": 168,
+    "공조": 138,
+    "완벽한 타인": 138,
+    "베테랑": 53,
+    "극한직업": 44,
+    "범죄도시": 59,
+    "부산행": 61,
+    "기생충": 46,
+    "군함도": 63,
+    "신과함께-죄와 벌": 61,
+    "신과함께-인과 연": 48,
+    "마스터": 43,
+    "청년경찰": 47,
+    "더 킹": 47,
+    "검사외전": 38,
+    "변호인": 40,
+    "명량": 45,
+    "엑시트": 34
+  },
+  "independent_checks": [
+    "real source association",
+    "rating arithmetic",
+    "sentiment denominators",
+    "multi-label counts",
+    "unique identities",
+    "shared analysis version",
+    "licensed data provenance"
+  ],
+  "browser_visual_test": false
+}

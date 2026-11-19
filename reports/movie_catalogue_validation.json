@@ -1,0 +1,33 @@
+{
+  "passed": true,
+  "movie_count": 20,
+  "review_count": 1478,
+  "small_sample_movies": [],
+  "source_manifest_sha256": "1528c445342f8ba2b9f5bb3d42f6d2aaf9b89fc0fbe5a618ccf25c102757ddd8",
+  "analysis_signature": "4059e88d3103ca9c4a5f507860cc266c27d3a2268499b4130ce7a11c28bb4881",
+  "source": {
+    "name": "Korean Movie Reviews and Historical Ratings of the Reviewer",
+    "authors": [
+      "Minseon Kim",
+      "Boyoung Lim",
+      "Hyuk-Yoon Kwon"
+    ],
+    "doi": "10.17632/jb5knzh8yv.6",
+    "url": "https://data.mendeley.com/datasets/jb5knzh8yv/6",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "published_at": "2022-05-24",
+    "retrieved_at": "2026-11-19T08:21:01.080273+00:00",
+    "review_dates": "not supplied in selected source records",
+    "source_file_count": 600,
+    "raw_history_rows": 20788,
+    "sampling": "40 deterministic random files plus 80 additional files per cohort among first 1000 API-listed files; five cohorts; convenience sample, not representative of all viewers",
+    "changes": "selected 20 Korean titles; removed duplicate normalized text and conflicting rating texts; inferred sentiment with project models; discarded source sentiment scores and user identity metadata",
+    "removed": {
+      "duplicate_text": 4,
+      "invalid_row": 1,
+      "conflicting_rating_texts": 0
+    },
+    "poster_policy": "no posters included: no redistribution permission verified"
+  }
+}

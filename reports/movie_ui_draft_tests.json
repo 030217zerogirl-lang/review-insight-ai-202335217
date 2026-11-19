@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "list": true,
+  "detail": true,
+  "comparison": true,
+  "search": true,
+  "direct_mixed": true,
+  "csv": true,
+  "scope": "DOM-stub handler tests. No real PC/mobile rendering, file picker or screenshot validation."
+}
