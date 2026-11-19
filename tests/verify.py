@@ -27,11 +27,12 @@ def main():
  checks['model_inference']=results;checks['game_status']=game;checks['invalid_input_rejected']=True
  from streamlit.testing.v1 import AppTest
  at=AppTest.from_file(str(ROOT/'app.py'),default_timeout=90).run();assert not at.exception
+ at.sidebar.radio[0].set_value('리뷰 직접 분석').run();assert not at.exception
  at.button[0].click().run();assert not at.exception;assert len(at.metric)==3
  checks['streamlit_review_analysis']=True
  at.sidebar.radio[0].set_value('프로젝트 소개').run();assert not at.exception
  checks['streamlit_introduction']=True
- at.sidebar.radio[0].set_value('CSV 대시보드').run();assert not at.exception
+ at.sidebar.radio[0].set_value('CSV 대량 분석').run();assert not at.exception
  checks['streamlit_dashboard_initial']=True
  at.sidebar.selectbox[0].set_value('게임').run();assert not at.exception
  checks['streamlit_game_warning']=True

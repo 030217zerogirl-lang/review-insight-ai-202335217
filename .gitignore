@@ -13,7 +13,6 @@ developer_notes/
 reports/release_pdf_preview/
 scripts/update_mixed_ui.py
 scripts/refine_clause_aspects.py
-scripts/prepare_delivery.py
 
 scripts/refresh_results_notebook.py
 scripts/finish_mixed_update.py
@@ -29,3 +28,12 @@ scripts/find_movie_downloads.py
 scripts/catalogue_movie_source.py
 scripts/get_movie_catalogue.py
 scripts/inspect_review_schema.py
+
+reports/slides_preview/
+reports/final_portfolio_preview/
+scripts/finish_platform.py
+scripts/update_app_tests.py
+scripts/refresh_final_documents.py
+scripts/refresh_final_notebook.py
+scripts/save_movie_checkpoint.py
+scripts/final_release_fixes.py

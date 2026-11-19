@@ -1,7 +1,7 @@
 {
   "student_id": "202335217",
   "name": "김서윤",
-  "title": "Review Insight AI 영화게임 리뷰 감성 및 불만 유형 분석 서비스",
+  "title": "Review Insight 영화별 리뷰 감성 및 불만 유형 분석",
   "github_url": "https://github.com/030217zerogirl-lang/review-insight-ai-202335217",
   "demo_url": "https://030217zerogirl-lang.github.io/review-insight-ai-202335217/",
   "data_type": "Korean movie review text (NSMC); weak-labeled movie complaints",
@@ -28,11 +28,11 @@
     "value": 0.8688264143123575
   },
   "incomplete": [
-    "transformer_finetuning",
+    "three_real_service_screenshots",
+    "real_PC_mobile_browser_validation",
     "human_gold_aspect_evaluation",
-    "game_training",
-    "real_browser_verification",
-    "three_service_screenshots"
+    "transformer_finetuning",
+    "game_training"
   ],
   "deployment_verification": "HTTP and remote weights inference passed; real browser UI not verified",
   "features": {
@@ -42,5 +42,15 @@
       "negative": 0.4
     },
     "aspect_display": "negative-clause predictions"
-  }
+  },
+  "movie_analysis": {
+    "movies": 20,
+    "reviews": 1478,
+    "source_doi": "10.17632/jb5knzh8yv.6",
+    "license": "CC BY 4.0",
+    "analysis_signature": "4059e88d3103ca9c4a5f507860cc266c27d3a2268499b4130ce7a11c28bb4881",
+    "rating_scope": "mean of source-sample individual ratings; not portal-wide"
+  },
+  "presentation": "presentation/Review_Insight_프로젝트소개.pptx",
+  "browser_validation": "not completed"
 }

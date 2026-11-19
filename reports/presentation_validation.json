@@ -1,0 +1,14 @@
+{
+  "slides": 18,
+  "pptx": "presentation\\Review_Insight_프로젝트소개.pptx",
+  "zip_integrity": true,
+  "all_xml_parsed": true,
+  "all_relationships_resolve": true,
+  "editable_tables": true,
+  "notes_present": 18,
+  "geometry_overflow_findings": 0,
+  "preview_pdf": "presentation/Review_Insight_발표.pdf",
+  "render_method": "PDF composed from identical text coordinates, not PowerPoint rendering",
+  "opened_in_powerpoint": false,
+  "limitations": "Dedicated presentation runtime unavailable; native OOXML fallback. Actual PowerPoint app rendering not verified."
+}

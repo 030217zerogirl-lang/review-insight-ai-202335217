@@ -1,10 +1,10 @@
-﻿import fs from 'node:fs';
+import fs from 'node:fs';
 const nodes=new Map(),callbacks={},make=()=>({value:'',textContent:'',innerHTML:'',disabled:false,hidden:false,files:[],className:'',dataset:{},classList:{toggle(){}},addEventListener(type,fn){this[type]=fn;},click(){},replaceChildren(){this.innerHTML='';}});
 const get=id=>{if(!nodes.has(id))nodes.set(id,make());return nodes.get(id);};
 globalThis.document={getElementById:get,querySelectorAll:()=>[],addEventListener(){},createElement:()=>make()};globalThis.location={hash:'#movies'};globalThis.window={addEventListener(type,fn){callbacks[type]=fn;},scrollTo(){}};
-globalThis.fetch=async url=>({ok:true,json:async()=>JSON.parse(fs.readFileSync(new URL(url),'utf8'))});globalThis.alert=message=>{throw Error(message);};
+globalThis.fetch=async url=>{const bytes=fs.readFileSync(new URL(url));return {ok:true,json:async()=>JSON.parse(bytes.toString('utf8')),arrayBuffer:async()=>bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.byteLength)};};Object.defineProperty(globalThis,'navigator',{value:{},configurable:true});globalThis.alert=message=>{throw Error(message);};
 get('sort').value='rating';get('minimum').value='0';get('year').value='';get('domain').value='movie';
-await import('../developer_notes/website-v3/app.mjs');
+await import('../web/app.mjs');
 if(!get('movie-list').innerHTML.includes('택시운전사'))throw Error('List failed');
 location.hash='#film/kr-01';callbacks.hashchange();if(!get('detail').innerHTML.includes('1987')||!get('detail').innerHTML.includes('수록 리뷰 평점'))throw Error('Detail failed');
 location.hash='#compare/kr-01/kr-02';callbacks.hashchange();if(!get('compare').innerHTML.includes('암살'))throw Error('Comparison failed');

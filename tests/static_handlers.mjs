@@ -1,17 +1,2 @@
-import fs from 'node:fs';
-const nodes=new Map(),make=()=>({value:'',textContent:'',innerHTML:'',disabled:false,hidden:false,files:[],className:'',dataset:{},classList:{toggle(){}},replaceChildren(){this.innerHTML='';},click(){}});
-for(const id of ['domain','review','result','status','analyze','sample','upload','batch-status','dashboard','download-results'])nodes.set(id,make());
-nodes.get('domain').value='movie';
-globalThis.document={getElementById:id=>nodes.get(id),querySelectorAll:()=>[],createElement:()=>make()};
-globalThis.fetch=async url=>({ok:true,json:async()=>JSON.parse(fs.readFileSync(new URL('../web/'+url,import.meta.url),'utf8'))});
-await import('../web/app.mjs');
-nodes.get('review').value='배우들 연기도 어색하고 스토리도 너무 뻔했음.';nodes.get('analyze').onclick();
-if(!nodes.get('result').innerHTML.includes('연기 및 캐스팅'))throw Error('movie handler failed');
-nodes.get('review').value='음악은 좋은데 스토리는그닥..';nodes.get('analyze').onclick();if(!nodes.get('result').innerHTML.includes('혼합'))throw Error('mixed handler failed');
-nodes.get('domain').value='game';nodes.get('analyze').onclick();if(!nodes.get('result').innerHTML.includes('게임 불만 모델 미학습'))throw Error('game handler failed');
-nodes.get('domain').value='movie';
-const buffer=new TextEncoder().encode('review\n"연기도 어색하고, 스토리도 지루하다."\n"음악은 훌륭했다."').buffer;
-nodes.get('upload').files=[{size:buffer.byteLength,arrayBuffer:async()=>buffer}];await nodes.get('upload').onchange();
-if(!nodes.get('batch-status').textContent.includes('2개 리뷰 분석 완료'))throw Error(nodes.get('batch-status').textContent);
-const result={movie_analysis_handler:true,mixed_analysis_handler:true,game_analysis_handler:true,quoted_csv_handler:true,csv_review_count:2,limitation:'DOM stub unit test only. No real browser rendering, file picker or screenshot verification.'};
-fs.writeFileSync(new URL('../reports/static_handler_tests.json',import.meta.url),JSON.stringify(result,null,2));console.log(result);
+// 현재 화면의 영화·직접·CSV 처리기 회귀 검사
+import './movie_ui_draft.mjs';

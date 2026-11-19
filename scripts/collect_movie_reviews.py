@@ -1,16 +1,8 @@
 from pathlib import Path
 import requests,json,random,concurrent.futures,hashlib,time
 root=Path(__file__).resolve().parents[1]
-files=json.loads((root/'reports/mendeley_files.json').read_text(encoding='utf-8'))
-folders=['1987','assassination','a taxi driver','confidential assignment','intimate stranger']
-rng=random.Random(42);selected=[]
-for name in folders:
- group=[f for f in files if f['movie_folder']==name]
- initial=rng.sample(group,min(40,len(group)))
- selected.extend(initial)
- remaining=[f for f in group if f not in initial]
- extra=random.Random(123+folders.index(name)).sample(remaining,min(80,len(remaining)))
- selected.extend(extra)
+frozen=json.loads((root/'docs/movie_source_manifest.json').read_text(encoding='utf-8'))
+selected=[{'id':entry['file_id'],'movie_folder':entry['folder'],'content_details':{'download_url':entry['url'],'sha256_hash':entry['sha256']}} for entry in frozen]
 raw=root/'data/movie_raw';raw.mkdir(parents=True,exist_ok=True)
 
 def download(f):
