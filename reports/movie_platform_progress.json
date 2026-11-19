@@ -1,6 +1,6 @@
 {
   "task": "movie_platform_redesign",
-  "updated_at_kst": "2026-11-20T02:30:03.767765+09:00",
+  "updated_at_kst": "2026-11-20T02:45:14.654685+09:00",
   "status": "delivered_with_documented_limitations",
   "requested_stop_kst": "2026-11-19T17:30:00+09:00",
   "completed": [
@@ -39,5 +39,17 @@
   "draft_ui_directory": "developer_notes/website-v3",
   "analysis_signature": "4059e88d3103ca9c4a5f507860cc266c27d3a2268499b4130ce7a11c28bb4881",
   "resume_instruction": "Read developer_notes/WORK_STATE.md first; continue unfinished integration, not data collection from scratch.",
-  "presentation_slides": 18
+  "presentation_slides": 18,
+  "review_browser": {
+    "deployed": true,
+    "filters": [
+      "sentiment",
+      "complaint",
+      "text"
+    ],
+    "page_size": 10,
+    "display_masking": "review-mask-v1",
+    "masked_source_reviews": 5,
+    "inference_and_source_unchanged": true
+  }
 }

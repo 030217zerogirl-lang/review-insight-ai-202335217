@@ -1,17 +1,17 @@
 {
   "github_url": "https://github.com/030217zerogirl-lang/review-insight-ai-202335217",
   "demo_url": "https://030217zerogirl-lang.github.io/review-insight-ai-202335217/",
-  "verified_at": "2026-11-19T17:27:42.298Z",
+  "verified_at": "2026-11-19T17:44:01.239Z",
   "http_checks": [
     {
       "path": "",
       "status": 200,
-      "bytes": 5730
+      "bytes": 5782
     },
     {
       "path": "app.mjs",
       "status": 200,
-      "bytes": 20564
+      "bytes": 25854
     },
     {
       "path": "engine.mjs",
@@ -21,12 +21,22 @@
     {
       "path": "style.css",
       "status": 200,
-      "bytes": 9034
+      "bytes": 9650
+    },
+    {
+      "path": "review_utils.mjs",
+      "status": 200,
+      "bytes": 2806
+    },
+    {
+      "path": "data/moderation_rules.json",
+      "status": 200,
+      "bytes": 1433
     },
     {
       "path": "sw.js",
       "status": 200,
-      "bytes": 945
+      "bytes": 953
     },
     {
       "path": "data/catalogue.json",
@@ -49,6 +59,9 @@
       "bytes": 9351480
     }
   ],
+  "review_browser_available": true,
+  "moderation_version": "review-mask-v1",
+  "masked_source_reviews": 5,
   "movie_count": 20,
   "review_count": 1478,
   "analysis_signature": "4059e88d3103ca9c4a5f507860cc266c27d3a2268499b4130ce7a11c28bb4881",
