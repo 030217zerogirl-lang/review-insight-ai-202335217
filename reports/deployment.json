@@ -1,7 +1,7 @@
 {
   "github_url": "https://github.com/030217zerogirl-lang/review-insight-ai-202335217",
   "demo_url": "https://030217zerogirl-lang.github.io/review-insight-ai-202335217/",
-  "verified_at": "2026-11-19T17:44:01.239Z",
+  "verified_at": "2026-11-19T18:53:21.154Z",
   "http_checks": [
     {
       "path": "",
@@ -66,7 +66,8 @@
   "review_count": 1478,
   "analysis_signature": "4059e88d3103ca9c4a5f507860cc266c27d3a2268499b4130ce7a11c28bb4881",
   "public_movie_parity_cases": 20,
-  "max_probability_difference": 5.5706694812585056e-9,
+  "max_probability_difference": 5.5706694812585056e-09,
   "mixed_result": "혼합",
-  "verification": "Public assets/version and remote-weight inference checked in Node. Actual browser rendering/file upload/offline tests not completed."
+  "verification": "Public assets and remote-weight inference verified in Node; Chrome direct-analysis UI verified separately in browser_ui_verification.json. Mobile/offline/file download not verified.",
+  "browser_ui_report": "reports/browser_ui_verification.json"
 }

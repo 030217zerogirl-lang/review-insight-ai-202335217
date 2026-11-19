@@ -1,0 +1,24 @@
+{
+  "verified_at": "2026-11-19T18:59:27.487588+00:00",
+  "url": "https://030217zerogirl-lang.github.io/review-insight-ai-202335217/",
+  "method": "Chrome native accessibility UI, click direct-review menu and Analyze button",
+  "checks": {
+    "public_catalogue_20_movies_1478_reviews": true,
+    "direct_analysis_button_clicked": true,
+    "mixed_result_visible": true,
+    "positive_probability_display": "12.9%",
+    "clause_probabilities": [
+      "63.5%",
+      "6.4%"
+    ],
+    "complaint_display": "스토리 및 전개"
+  },
+  "input": "음악은 좋은데 스토리는그닥..",
+  "screenshots": "four original PNGs extracted from author-provided PPTX; not generated mockups",
+  "not_tested": [
+    "mobile_device_UI",
+    "actual_browser_offline_switch",
+    "file_download_end_to_end",
+    "PowerPoint_final_render"
+  ]
+}

@@ -39,3 +39,12 @@ scripts/save_movie_checkpoint.py
 scripts/final_release_fixes.py
 
 reports/review_feature_pdf_preview/
+
+output/submission_audit/
+scripts/build_gpt_ppt_kit.py
+scripts/inspect_user_ppt.py
+scripts/inspect_ppt_notes.py
+scripts/extract_user_ppt_media.py
+scripts/finalize_submission.py
+scripts/refine_final_layout.py
+scripts/verify_final_submission.py

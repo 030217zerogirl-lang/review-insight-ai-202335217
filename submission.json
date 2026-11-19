@@ -1,10 +1,10 @@
 {
   "student_id": "202335217",
   "name": "김서윤",
-  "title": "Review Insight 영화별 리뷰 감성 및 불만 유형 분석",
+  "title": "Review Insight 한국 영화 리뷰 감성 및 불만 유형 분석",
   "github_url": "https://github.com/030217zerogirl-lang/review-insight-ai-202335217",
   "demo_url": "https://030217zerogirl-lang.github.io/review-insight-ai-202335217/",
-  "data_type": "Korean movie review text (NSMC); weak-labeled movie complaints",
+  "data_type": "한국어 영화 리뷰 텍스트: NSMC 감성 학습 및 Mendeley 영화별 공개 리뷰",
   "training": {
     "direct_training": true,
     "seed": 42,
@@ -28,13 +28,13 @@
     "value": 0.8688264143123575
   },
   "incomplete": [
-    "three_real_service_screenshots",
-    "real_PC_mobile_browser_validation",
     "human_gold_aspect_evaluation",
     "transformer_finetuning",
-    "game_training"
+    "game_training",
+    "mobile_browser_and_offline_validation",
+    "mobile_browser_and_offline_validation"
   ],
-  "deployment_verification": "HTTP and remote weights inference passed; real browser UI not verified",
+  "deployment_verification": "Public HTTP assets, remote-weight inference and Chrome direct-analysis result verified",
   "features": {
     "mixed_sentiment": "clause-based binary-model aggregation; no three-class training",
     "clause_thresholds": {
@@ -53,6 +53,6 @@
     "analysis_signature": "4059e88d3103ca9c4a5f507860cc266c27d3a2268499b4130ce7a11c28bb4881",
     "rating_scope": "mean of source-sample individual ratings; not portal-wide"
   },
-  "presentation": "presentation/Review_Insight_프로젝트소개.pptx",
-  "browser_validation": "not completed"
+  "presentation": "presentation/기말발표-202335217-김서윤.pptx",
+  "browser_validation": "Chrome public direct-review inference verified; four author-provided screenshots included; mobile/offline unverified"
 }

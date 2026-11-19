@@ -4,7 +4,7 @@ import re,html
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.lib.styles import ParagraphStyle
-from reportlab.platypus import SimpleDocTemplate,Paragraph,Spacer,Image,Table,TableStyle,KeepTogether
+from reportlab.platypus import SimpleDocTemplate,Paragraph,Spacer,Image,Table,TableStyle,KeepTogether,PageBreak
 from reportlab.lib import colors
 from PIL import Image as PILImage
 
@@ -15,7 +15,7 @@ def build(root,output):
  pdfmetrics.registerFont(TTFont('BodyKR',str(font)))
  body=ParagraphStyle('body',fontName='BodyKR',fontSize=9.5,leading=15,wordWrap='CJK',spaceAfter=6,allowWidows=0,allowOrphans=0)
  small=ParagraphStyle('small',parent=body,fontSize=8,leading=12)
- heading=ParagraphStyle('heading',parent=body,fontSize=14,leading=21,spaceBefore=15,spaceAfter=9,textColor=colors.HexColor('#254d7c'))
+ heading=ParagraphStyle('heading',parent=body,fontSize=14,leading=21,spaceBefore=15,spaceAfter=9,keepWithNext=True,textColor=colors.HexColor('#254d7c'))
  title=ParagraphStyle('title',parent=heading,fontSize=22,leading=30)
  story=[];lines=(root/'README.md').read_text(encoding='utf-8').splitlines();i=0;in_code=False
  def para(s,style=body):return Paragraph(html.escape(s).replace('**','').replace('`',''),style)
@@ -34,8 +34,9 @@ def build(root,output):
    path=root/image[2]
    if not path.exists():raise FileNotFoundError(path)
    with PILImage.open(path) as im:w,h=im.size
-   scale=min(475/w,300/h)
+   scale=min(475/w,(560 if 'screenshots' in str(path) else 300)/h)
    story.append(KeepTogether([Image(str(path),width=w*scale,height=h*scale),para(image[1],small),Spacer(1,9)]));continue
+  if line.startswith('## 9.'):story.append(PageBreak())
   style=title if line.startswith('# ') else heading if line.startswith('## ') else body
   story.append(para(line.lstrip('# '),style))
  def footer(c,d):c.setFont('BodyKR',8);c.setFillColor(colors.gray);c.drawString(45,25,'Review Insight AI | 202335217 김서윤');c.drawRightString(550,25,str(d.page))

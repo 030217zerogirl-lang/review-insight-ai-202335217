@@ -1,0 +1,17 @@
+{
+  "source": "기계학습프로그래밍_기말ppt.pptx",
+  "provided_by": "project author",
+  "method": "embedded original PNG extraction; no image synthesis",
+  "slides": {
+    "01_movie_catalogue.png": 9,
+    "02_review_browser.png": 10,
+    "03_mixed_review.png": 11,
+    "04_csv_dashboard.png": 12
+  },
+  "checks": [
+    "20 movies / 1478 reviews consistent with catalogue",
+    "군함도 63 reviews consistent with source",
+    "mixed sentence and 12.9/63.5/6.4 consistent with model",
+    "CSV two-row example displayed"
+  ]
+}
